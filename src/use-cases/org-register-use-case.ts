@@ -28,8 +28,16 @@ export async function orgRegisterUseCase(data: OrgRegisterUseCaseProps) {
 
   const prismaUserRepository = new PrismaOrgsRepository()
 
+  const { cep, city, email, name, organization, state, whatsapp } = data
+
   await prismaUserRepository.create({
+    cep,
+    city,
+    email,
+    name,
+    organization,
     password_hash,
-    ...data,
+    state,
+    whatsapp,
   })
 }
