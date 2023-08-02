@@ -6,6 +6,7 @@ export class PrismaOrgsRepository {
     const org = await prisma.org.create({
       data,
     })
+
     return org
   }
 }

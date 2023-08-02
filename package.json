@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "lint": "eslint ./ --ext .ts",
+    "lint-fix": "eslint ./ --ext .ts --fix"
   },
   "keywords": [],
   "author": "",

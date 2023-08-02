@@ -49,9 +49,6 @@ CREATE TABLE "requirements" (
 -- CreateIndex
 CREATE UNIQUE INDEX "orgs_email_key" ON "orgs"("email");
 
--- CreateIndex
-CREATE UNIQUE INDEX "orgs_whatsapp_key" ON "orgs"("whatsapp");
-
 -- AddForeignKey
 ALTER TABLE "pets" ADD CONSTRAINT "pets_org_id_fkey" FOREIGN KEY ("org_id") REFERENCES "orgs"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 

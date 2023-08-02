@@ -19,7 +19,7 @@ export async function orgsRegister(req: FastifyRequest, res: FastifyReply) {
   try {
     await orgRegisterUseCase(data)
   } catch (err) {
-    return res.status(201).send()
+    return res.status(409).send()
   }
 
   res.status(201).send()
