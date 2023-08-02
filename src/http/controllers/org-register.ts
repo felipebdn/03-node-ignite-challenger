@@ -1,10 +1,10 @@
 import { PrismaOrgsRepository } from '@/repositories/prisma/prisma-orgs-repositories'
-import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists-error-'
-import { OrgRegisterUseCase } from '@/use-cases/org-register-use-case'
+import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists-error'
+import { OrgRegisterUseCase } from '@/use-cases/org-register'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-export async function orgsRegister(req: FastifyRequest, res: FastifyReply) {
+export async function orgRegister(req: FastifyRequest, res: FastifyReply) {
   const registerOrgSchema = z.object({
     name: z.string(),
     organization: z.string(),
@@ -27,7 +27,7 @@ export async function orgsRegister(req: FastifyRequest, res: FastifyReply) {
     if (err instanceof OrgAlreadyExistsError) {
       return res.status(409).send({ message: err.message })
     }
-    return res.status(500).send()
+    throw err
   }
 
   res.status(201).send()
