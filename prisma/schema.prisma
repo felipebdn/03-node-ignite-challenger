@@ -9,13 +9,14 @@ datasource db {
 
 model Pet {
   id           String @id @default(uuid())
+  collar       String
   name         String
-  energy_level BigInt
-  size         BigInt
-  age          BigInt
+  energy_level Int
+  size         Int
+  age          Int
   description  String
-  independence BigInt
-  anvironment  BigInt
+  independence Int
+  anvironment  Int
 
   org    Org    @relation(fields: [org_id], references: [id])
   org_id String
@@ -43,7 +44,7 @@ model Org {
   email         String @unique
   state         String
   city          String
-  cep           BigInt
+  cep           Int
   whatsapp      String
   password_hash String
 

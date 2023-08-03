@@ -1,13 +1,14 @@
 -- CreateTable
 CREATE TABLE "pets" (
     "id" TEXT NOT NULL,
+    "collar" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "energy_level" BIGINT NOT NULL,
-    "size" BIGINT NOT NULL,
-    "age" BIGINT NOT NULL,
+    "energy_level" INTEGER NOT NULL,
+    "size" INTEGER NOT NULL,
+    "age" INTEGER NOT NULL,
     "description" TEXT NOT NULL,
-    "independence" BIGINT NOT NULL,
-    "anvironment" BIGINT NOT NULL,
+    "independence" INTEGER NOT NULL,
+    "anvironment" INTEGER NOT NULL,
     "org_id" TEXT NOT NULL,
 
     CONSTRAINT "pets_pkey" PRIMARY KEY ("id")
@@ -30,7 +31,7 @@ CREATE TABLE "orgs" (
     "email" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "city" TEXT NOT NULL,
-    "cep" BIGINT NOT NULL,
+    "cep" INTEGER NOT NULL,
     "whatsapp" TEXT NOT NULL,
     "password_hash" TEXT NOT NULL,
 

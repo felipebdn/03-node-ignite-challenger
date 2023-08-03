@@ -21,7 +21,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       email: data.email,
       state: data.state,
       city: data.city,
-      cep: BigInt(data.cep),
+      cep: data.cep,
       whatsapp: data.whatsapp,
       password_hash: data.password_hash,
     }

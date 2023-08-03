@@ -1,17 +1,20 @@
-import { OrgsRepository } from '@/repositories/orgs-repository'
-import { hash } from 'bcryptjs'
-import { OrgAlreadyExistsError } from './errors/org-already-exists-error'
 import { Org } from '@prisma/client'
+import { PetsRespository } from '@/repositories/pets-repository'
+import { PetAlreadyExistsError } from './errors/pet-already-exists-error'
 
 interface PetRegisterUseCaseRequest {
+  collar: string
   name: string
-  organization: string
-  email: string
-  state: string
-  city: string
-  cep: number
-  whatsapp: string
-  password: string
+  energy_level: number
+  size: number
+  age: number
+  description: string
+  independence: number
+  anvironment: number
+  org_id: string
+  images: {
+    url: string
+  }[]
 }
 
 interface OrgRegisterUseCaseResponse {
@@ -19,31 +22,33 @@ interface OrgRegisterUseCaseResponse {
 }
 
 export class OrgRegisterUseCase {
-  constructor(private orgsRepository: OrgsRepository) {}
+  constructor(private petsRepository: PetsRespository) {}
 
   async execute(
     data: PetRegisterUseCaseRequest,
   ): Promise<OrgRegisterUseCaseResponse> {
-    const orgWithSameEmail = await this.orgsRepository.findByEmail(data.email)
+    const orgWithSameCollar = await this.petsRepository.findByCollar(
+      data.collar,
+    )
 
-    if (orgWithSameEmail) {
-      throw new OrgAlreadyExistsError()
+    if (orgWithSameCollar) {
+      throw new PetAlreadyExistsError()
     }
 
-    const password_hash = await hash(data.password, 6)
-
-    const { cep, city, email, name, organization, state, whatsapp } = data
-
-    const org = await this.orgsRepository.create({
-      cep,
-      city,
-      email,
-      name,
-      organization,
-      password_hash,
-      state,
-      whatsapp,
-    })
-    return { org }
+    const pet = await this.petsRepository.create(
+      {
+        anvironment: data.anvironment,
+        age: data.age,
+        collar: data.collar,
+        description: data.description,
+        energy_level: data.energy_level,
+        independence: data.independence,
+        name: data.name,
+        org_id: data.org_id,
+        size: data.size,
+      },
+      {},
+    )
+    return { pet }
   }
 }
