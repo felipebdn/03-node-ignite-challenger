@@ -3,15 +3,17 @@ import { PetsRespository } from '@/repositories/pets-repository'
 import { PetAlreadyExistsError } from './errors/pet-already-exists-error'
 
 interface PetRegisterUseCaseRequest {
-  collar: string
-  name: string
-  energy_level: number
-  size: number
-  age: number
-  description: string
-  independence: number
-  anvironment: number
-  org_id: string
+  data: {
+    collar: string
+    name: string
+    energy_level: number
+    size: number
+    age: number
+    description: string
+    independence: number
+    anvironment: number
+    org_id: string
+  }
   images: {
     url: string
   }[]
@@ -35,20 +37,20 @@ export class OrgRegisterUseCase {
       throw new PetAlreadyExistsError()
     }
 
-    const pet = await this.petsRepository.create(
-      {
-        anvironment: data.anvironment,
-        age: data.age,
-        collar: data.collar,
-        description: data.description,
-        energy_level: data.energy_level,
-        independence: data.independence,
-        name: data.name,
-        org_id: data.org_id,
-        size: data.size,
-      },
-      {},
-    )
+    const pet = await this.petsRepository.create({
+      anvironment: data.anvironment,
+      age: data.age,
+      collar: data.collar,
+      description: data.description,
+      energy_level: data.energy_level,
+      independence: data.independence,
+      name: data.name,
+      org_id: data.org_id,
+      size: data.size,
+    })
+
+    await this.petsRepository.sendImagesByBookId()
+
     return { pet }
   }
 }
