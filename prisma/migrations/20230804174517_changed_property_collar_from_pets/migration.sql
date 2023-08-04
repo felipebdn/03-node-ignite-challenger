@@ -48,6 +48,9 @@ CREATE TABLE "requirements" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "pets_collar_key" ON "pets"("collar");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "orgs_email_key" ON "orgs"("email");
 
 -- AddForeignKey

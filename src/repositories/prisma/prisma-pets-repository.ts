@@ -3,18 +3,21 @@ import { PetsRespository } from '../pets-repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaPetsRepository implements PetsRespository {
-  async create(
-    data: Prisma.PetUncheckedCreateInput,
-    dataImages: Prisma.ImageUncheckedCreateInput,
-  ) {
+  async findByCollar(collar: string) {
+    const pet = await prisma.pet.findUnique({
+      where: {
+        collar,
+      },
+    })
+    if (!pet) {
+      return null
+    }
+    return pet
+  }
+
+  async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = await prisma.pet.create({
       data,
-    })
-    await prisma.image.create({
-      data: {
-        url: dataImages.url,
-        pet_id: dataImages.pet_id,
-      },
     })
     return pet
   }

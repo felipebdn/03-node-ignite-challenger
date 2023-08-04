@@ -9,7 +9,7 @@ datasource db {
 
 model Pet {
   id           String @id @default(uuid())
-  collar       String
+  collar       String @unique
   name         String
   energy_level Int
   size         Int
