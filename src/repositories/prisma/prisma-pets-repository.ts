@@ -15,9 +15,25 @@ export class PrismaPetsRepository implements PetsRespository {
     return pet
   }
 
-  async create(data: Prisma.PetUncheckedCreateInput) {
+  async create({ Images, ...data }: Prisma.PetUncheckedCreateInput) {
+    console.log(Images)
+
     const pet = await prisma.pet.create({
-      data,
+      data: {
+        ...data,
+        Images: {
+          createMany: {
+            data: [
+              {
+                url: 'teste',
+              },
+              {
+                url: 'teste2',
+              },
+            ],
+          },
+        },
+      },
     })
     return pet
   }
