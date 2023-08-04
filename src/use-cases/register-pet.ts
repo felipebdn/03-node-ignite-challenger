@@ -12,7 +12,7 @@ interface PetRegisterUseCaseRequest {
   independence: number
   anvironment: number
   org_id: string
-  images: string[]
+  images: { url: string }[]
 }
 
 interface PetRegisterUseCaseResponse {
@@ -33,7 +33,7 @@ export class PetRegisterUseCase {
       throw new PetAlreadyExistsError()
     }
 
-    const pet = await this.petsRepository.create(data)
+    const pet = await this.petsRepository.create({ ...data }, data.images)
 
     return { pet }
   }

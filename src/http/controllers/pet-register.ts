@@ -17,13 +17,15 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
 
   const data = petBodySchema.parse(req.body)
 
-  const images = ['teste1', 'teste2']
+  const images = [{ url: 'teste1' }, { url: 'teste2' }]
 
   try {
     const petRegisterUseCase = makePetRegisterUseCase()
 
     await petRegisterUseCase.execute({ ...data, images })
-  } catch (err) {}
+  } catch (err) {
+    console.log(err)
+  }
 
   return res.status(201).send()
 }
