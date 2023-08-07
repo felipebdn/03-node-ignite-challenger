@@ -16,7 +16,6 @@ export class PrismaOrgsRepository implements OrgsRepository {
     const org = await prisma.org.create({
       data,
     })
-
     return org
   }
 }

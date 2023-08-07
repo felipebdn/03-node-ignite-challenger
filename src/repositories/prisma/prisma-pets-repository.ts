@@ -9,9 +9,6 @@ export class PrismaPetsRepository implements PetsRespository {
         collar,
       },
     })
-    if (!pet) {
-      return null
-    }
     return pet
   }
 
@@ -19,8 +16,6 @@ export class PrismaPetsRepository implements PetsRespository {
     data: Prisma.PetUncheckedCreateInput,
     images: { url: string }[],
   ) {
-    console.log(data)
-
     const pet = await prisma.pet.create({
       data: {
         age: data.age,
@@ -49,17 +44,14 @@ export class PrismaPetsRepository implements PetsRespository {
     const orgsWithStateAndCity = await prisma.org.findMany({
       where: {
         state,
-        city,
+        city: {
+          contains: city,
+        },
       },
     })
-
-    if (!orgsWithStateAndCity) {
-      return null
-    }
-
-    const pet = await prisma.pet.findMany({
+    const pets = await prisma.pet.findMany({
       where: {
-        id: {
+        org_id: {
           in: orgsWithStateAndCity.map((org) => org.id),
         },
       },
@@ -67,11 +59,6 @@ export class PrismaPetsRepository implements PetsRespository {
         Images: true,
       },
     })
-
-    if (!pet) {
-      return null
-    }
-
-    return pet
+    return pets
   }
 }

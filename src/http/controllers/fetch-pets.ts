@@ -9,11 +9,10 @@ export async function FetchPets(req: FastifyRequest, res: FastifyReply) {
   })
 
   const data = queryParamsSchema.parse(req.query)
-  console.log(data)
 
   const pestAroundCityUseCase = makePestAroundCityUseCase()
 
   const pets = await pestAroundCityUseCase.execute(data)
 
-  return res.status(200).send({ pets })
+  return res.status(200).send(pets)
 }
