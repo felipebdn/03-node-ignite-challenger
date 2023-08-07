@@ -12,11 +12,11 @@ model Pet {
   collar       String @unique
   name         String
   energy_level Int
-  size         Int
-  age          Int
+  size         String
+  age          String
   description  String
-  independence Int
-  anvironment  Int
+  independence String
+  anvironment  String
 
   org    Org    @relation(fields: [org_id], references: [id])
   org_id String

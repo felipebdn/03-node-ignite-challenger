@@ -19,7 +19,7 @@ describe('Orgs Authenticate Use Case', () => {
       email: 'teste@example.com',
       state: 'PA',
       city: 'Redenção',
-      cep: BigInt(84874000),
+      cep: 84874000,
       whatsapp: '(94) 99148-7963',
       password_hash: await hash('123456', 6),
     })
@@ -47,7 +47,7 @@ describe('Orgs Authenticate Use Case', () => {
       email: 'teste@example.com',
       state: 'PA',
       city: 'Redenção',
-      cep: BigInt(84874000),
+      cep: 84874000,
       whatsapp: '(94) 99148-7963',
       password_hash: await hash('123456', 6),
     })

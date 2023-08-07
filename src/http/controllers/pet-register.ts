@@ -7,11 +7,11 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     collar: z.string(),
     name: z.string(),
     energy_level: z.coerce.number(),
-    size: z.coerce.number(),
-    age: z.coerce.number(),
+    size: z.string(),
+    age: z.string(),
     description: z.string(),
-    independence: z.coerce.number(),
-    anvironment: z.coerce.number(),
+    independence: z.string(),
+    anvironment: z.string(),
     org_id: z.string(),
   })
 

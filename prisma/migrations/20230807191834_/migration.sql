@@ -4,11 +4,11 @@ CREATE TABLE "pets" (
     "collar" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "energy_level" INTEGER NOT NULL,
-    "size" INTEGER NOT NULL,
-    "age" INTEGER NOT NULL,
+    "size" TEXT NOT NULL,
+    "age" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "independence" INTEGER NOT NULL,
-    "anvironment" INTEGER NOT NULL,
+    "independence" TEXT NOT NULL,
+    "anvironment" TEXT NOT NULL,
     "org_id" TEXT NOT NULL,
 
     CONSTRAINT "pets_pkey" PRIMARY KEY ("id")

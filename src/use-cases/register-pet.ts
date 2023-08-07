@@ -6,11 +6,11 @@ interface PetRegisterUseCaseRequest {
   collar: string
   name: string
   energy_level: number
-  size: number
-  age: number
+  size: string
+  age: string
   description: string
-  independence: number
-  anvironment: number
+  independence: string
+  anvironment: string
   org_id: string
   images: { url: string }[]
 }

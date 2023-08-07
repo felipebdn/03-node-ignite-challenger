@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client'
-import { PetsRespository } from '../pets-repository'
+import { FindByAttributesProps, PetsRespository } from '../pets-repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaPetsRepository implements PetsRespository {
@@ -40,25 +40,19 @@ export class PrismaPetsRepository implements PetsRespository {
     return pet
   }
 
-  async findByStateAndCity(state: string, city: string) {
-    const orgsWithStateAndCity = await prisma.org.findMany({
-      where: {
-        state,
-        city: {
-          contains: city,
-        },
-      },
-    })
+  async findByStateAndCity(data: FindByAttributesProps) {
     const pets = await prisma.pet.findMany({
       where: {
-        org_id: {
-          in: orgsWithStateAndCity.map((org) => org.id),
+        org: {
+          city: {
+            contains: data.city,
+          },
+          state: data.state,
         },
       },
-      include: {
-        Images: true,
-      },
     })
+    console.log(pets)
+
     return pets
   }
 }
