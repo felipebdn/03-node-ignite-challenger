@@ -40,7 +40,15 @@ export class PrismaPetsRepository implements PetsRespository {
     return pet
   }
 
-  async findByStateAndCity(data: FindByAttributesProps) {
+  async findByFilter(data: FindByAttributesProps) {
+    const query = Object.fromEntries(
+      Object.entries(data).filter(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ([_, v]) => v != null && v !== 'city' && v !== 'state',
+      ),
+    )
+    console.log(query)
+
     const pets = await prisma.pet.findMany({
       where: {
         org: {
@@ -49,9 +57,9 @@ export class PrismaPetsRepository implements PetsRespository {
           },
           state: data.state,
         },
+        ...query,
       },
     })
-    console.log(pets)
 
     return pets
   }

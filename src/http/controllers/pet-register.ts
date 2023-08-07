@@ -6,11 +6,11 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
   const petBodySchema = z.object({
     collar: z.string(),
     name: z.string(),
-    energy_level: z.coerce.number(),
-    size: z.string(),
-    age: z.string(),
+    energy_level: z.coerce.number().min(1).max(5),
+    size: z.enum(['small', 'medium', 'big']),
+    age: z.enum(['cub', 'adolescent', 'elderly']),
     description: z.string(),
-    independence: z.string(),
+    independence: z.enum(['low', 'medium', 'high']),
     anvironment: z.string(),
     org_id: z.string(),
   })

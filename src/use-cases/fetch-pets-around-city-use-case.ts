@@ -8,16 +8,29 @@ interface FetchPetsAroundCityUseCaseRequest {
   energy_level?: number
   size?: string
   independence?: string
+  typePet?: 'cat' | 'dog' | 'all'
 }
 interface FetchPetsAroundCityUseCaseResponse {
   pets: Pet[]
 }
 export class FetchPetsAroundCityUseCase {
   constructor(private petsRepository: PetsRespository) {}
-  async execute(
-    data: FetchPetsAroundCityUseCaseRequest,
-  ): Promise<FetchPetsAroundCityUseCaseResponse | null> {
-    const pets = await this.petsRepository.findByStateAndCity(data)
+  async execute({
+    city,
+    state,
+    age,
+    energy_level,
+    independence,
+    size,
+  }: FetchPetsAroundCityUseCaseRequest): Promise<FetchPetsAroundCityUseCaseResponse | null> {
+    const pets = await this.petsRepository.findByFilter({
+      city,
+      state,
+      age,
+      energy_level,
+      independence,
+      size,
+    })
 
     if (!pets) {
       return null
