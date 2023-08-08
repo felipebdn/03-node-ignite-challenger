@@ -6,10 +6,10 @@ export async function FetchPets(req: FastifyRequest, res: FastifyReply) {
   const queryParamsSchema = z.object({
     state: z.string().length(2),
     city: z.string(),
-    age: z.string(),
-    energy_level: z.coerce.number(),
-    size: z.string(),
-    independence: z.string(),
+    age: z.string().optional(),
+    energy_level: z.coerce.number().min(1).max(5).optional(),
+    size: z.string().optional(),
+    independence: z.string().optional(),
   })
 
   const data = queryParamsSchema.parse(req.query)

@@ -1,9 +1,10 @@
-import { Pet, Prisma } from '@prisma/client'
+import { Image, Pet, Prisma } from '@prisma/client'
 import { PetsRespository } from '../pets-repository'
 import { randomUUID } from 'node:crypto'
 
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
+  public imagesPet: Image[] = []
 
   async findByCollar(collar: string) {
     const pet = this.items.find((item) => item.collar === collar)
@@ -15,9 +16,12 @@ export class InMemoryPetsRepository implements PetsRespository {
     return pet
   }
 
-  async create(data: Prisma.PetUncheckedCreateInput) {
+  async create(
+    data: Prisma.PetUncheckedCreateInput,
+    images: { url: string }[],
+  ) {
     const pet: Pet = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       age: data.age,
       collar: data.collar,
       anvironment: data.anvironment,
@@ -28,6 +32,13 @@ export class InMemoryPetsRepository implements PetsRespository {
       org_id: data.org_id,
       size: data.size,
     }
+    images.map((image) => {
+      return this.imagesPet.push({
+        id: randomUUID(),
+        pet_id: pet.id,
+        url: image.url,
+      })
+    })
 
     this.items.push(pet)
 

@@ -1,6 +1,6 @@
+import { FastifyInstance } from 'fastify'
 import { orgAuthenticate } from './controllers/org-authenticate'
 import { orgRegister } from './controllers/org-register'
-import { FastifyInstance } from 'fastify'
 import { petRegister } from './controllers/pet-register'
 import { FetchPets } from './controllers/fetch-pets'
 

@@ -1,5 +1,5 @@
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pets-repository'
-import { FetchPetsAroundCityUseCase } from '../fetch-pets-around-city-use-case'
+import { FetchPetsAroundCityUseCase } from '../search-pets'
 
 export function makePestAroundCityUseCase() {
   const prismaPetsRepository = new PrismaPetsRepository()

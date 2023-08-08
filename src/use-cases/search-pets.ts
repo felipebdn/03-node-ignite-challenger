@@ -8,7 +8,6 @@ interface FetchPetsAroundCityUseCaseRequest {
   energy_level?: number
   size?: string
   independence?: string
-  typePet?: 'cat' | 'dog' | 'all'
 }
 interface FetchPetsAroundCityUseCaseResponse {
   pets: Pet[]

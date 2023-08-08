@@ -3,10 +3,10 @@ import { Pet, Prisma } from '@prisma/client'
 export interface FindByAttributesProps {
   state: string
   city: string
-  age?: string
+  age?: 'cub' | 'adolescent' | 'elderly'
   energy_level?: number
-  size?: string
-  independence?: string
+  size?: 'small' | 'medium' | 'big'
+  independence?: 'low' | 'medium' | 'high'
 }
 
 export interface PetsRespository {
@@ -15,5 +15,5 @@ export interface PetsRespository {
     images: { url: string }[],
   ): Promise<Pet>
   findByCollar(collar: string): Promise<Pet | null>
-  findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
+  // findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
 }

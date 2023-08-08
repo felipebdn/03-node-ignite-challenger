@@ -6,10 +6,10 @@ interface PetRegisterUseCaseRequest {
   collar: string
   name: string
   energy_level: number
-  size: string
-  age: string
+  size: 'small' | 'medium' | 'big'
+  age: 'cub' | 'adolescent' | 'elderly'
   description: string
-  independence: string
+  independence: 'low' | 'medium' | 'high'
   anvironment: string
   org_id: string
   images: { url: string }[]
