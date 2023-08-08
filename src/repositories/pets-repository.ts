@@ -1,4 +1,4 @@
-import { Pet, Prisma } from '@prisma/client'
+import { Image, Pet, Prisma } from '@prisma/client'
 
 export interface FindByAttributesProps {
   state: string
@@ -9,11 +9,18 @@ export interface FindByAttributesProps {
   independence?: 'low' | 'medium' | 'high'
 }
 
+type ResponseFindById = {
+  pet: Pet
+  images: Image[]
+}
+
 export interface PetsRespository {
   create(
     data: Prisma.PetUncheckedCreateInput,
+    requirements: { title: string }[],
     images: { url: string }[],
   ): Promise<Pet>
   findByCollar(collar: string): Promise<Pet | null>
   findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
+  findById(id: string): Promise<ResponseFindById | null>
 }

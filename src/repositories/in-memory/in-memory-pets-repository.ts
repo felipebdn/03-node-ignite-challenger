@@ -1,4 +1,4 @@
-import { Image, Pet, Prisma } from '@prisma/client'
+import { Image, Pet, Prisma, Requirement } from '@prisma/client'
 import { FindByAttributesProps, PetsRespository } from '../pets-repository'
 import { randomUUID } from 'node:crypto'
 import { DataQueryFilterPets } from '@/lib/data-query-pets'
@@ -6,6 +6,8 @@ import { DataQueryFilterPets } from '@/lib/data-query-pets'
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
   public imagesPet: Image[] = []
+  public requirements: Requirement[] = []
+
   async findByCollar(collar: string) {
     const pet = this.items.find((item) => item.collar === collar)
     if (!pet) {
@@ -16,6 +18,7 @@ export class InMemoryPetsRepository implements PetsRespository {
 
   async create(
     data: Prisma.PetUncheckedCreateInput,
+    requirements: { title: string }[],
     images: { url: string }[],
   ) {
     const pet: Pet = {
@@ -37,12 +40,20 @@ export class InMemoryPetsRepository implements PetsRespository {
         url: image.url,
       })
     })
+    requirements.map((requirement) => {
+      return this.requirements.push({
+        id: randomUUID(),
+        pet_id: pet.id,
+        title: requirement.title,
+      })
+    })
     this.items.push(pet)
     return pet
   }
 
   async findByFilter(data: FindByAttributesProps) {
     const { query } = DataQueryFilterPets(data)
+
     const pets = this.items.filter((pet) => {
       for (const [key, value] of Object.entries(query)) {
         if (key === 'age') {
@@ -54,7 +65,7 @@ export class InMemoryPetsRepository implements PetsRespository {
             return pet.age === 'elderly'
           }
         } else if (key === 'energy_level') {
-          return pet.age === value
+          return pet.energy_level === value
         } else if (key === 'size') {
           if (value === 'small') {
             return pet.size === 'small'
@@ -73,8 +84,20 @@ export class InMemoryPetsRepository implements PetsRespository {
           }
         }
       }
+
       return false
     })
     return pets
+  }
+
+  async findById(id: string) {
+    const pet = this.items.find((item) => item.id === id)
+    const images = this.imagesPet.filter((image) => image.pet_id === id)
+
+    if (!pet) {
+      return null
+    }
+
+    return { pet, images }
   }
 }

@@ -39,6 +39,7 @@ describe('Pets Search Use Case', () => {
   })
   it('should be able to search pets', async () => {
     const images = [{ url: 'teste1' }, { url: 'teste2' }]
+    const requirements = [{ title: 'wallison queime bastante' }]
 
     await inMemoryPetsRepository.create(
       {
@@ -52,6 +53,7 @@ describe('Pets Search Use Case', () => {
         anvironment: 'Lugares fechados',
         org_id: 'org-01',
       },
+      requirements,
       images,
     )
     await inMemoryPetsRepository.create(
@@ -66,6 +68,7 @@ describe('Pets Search Use Case', () => {
         anvironment: 'Lugares fechados',
         org_id: 'org-021',
       },
+      requirements,
       images,
     )
 
@@ -74,7 +77,6 @@ describe('Pets Search Use Case', () => {
       state: 'estado',
       energy_level: 5,
     })
-    console.log(data)
 
     expect(data?.pets).toEqual([
       expect.objectContaining({
