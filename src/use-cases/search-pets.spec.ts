@@ -3,16 +3,17 @@ import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-
 import { PetRegisterUseCase } from './register-pet'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { hash } from 'bcryptjs'
+import { FetchPetsAroundCityUseCase } from './search-pets'
 
 let inMemoryOrgsRepository: InMemoryOrgsRepository
 let inMemoryPetsRepository: InMemoryPetsRepository
-let sut: PetRegisterUseCase
+let sut: FetchPetsAroundCityUseCase
 
 describe('Pets Search Use Case', () => {
   beforeEach(async () => {
     inMemoryOrgsRepository = new InMemoryOrgsRepository()
     inMemoryPetsRepository = new InMemoryPetsRepository()
-    sut = new PetRegisterUseCase(inMemoryPetsRepository)
+    sut = new FetchPetsAroundCityUseCase(inMemoryPetsRepository)
 
     await inMemoryOrgsRepository.create({
       id: 'org-01',
@@ -45,7 +46,7 @@ describe('Pets Search Use Case', () => {
         collar: '1',
         name: 'Felipe',
         energy_level: 5,
-        size: 'medium',
+        size: 'small',
         age: 'adolescent',
         description: 'z.string()',
         independence: 'medium',
@@ -69,6 +70,10 @@ describe('Pets Search Use Case', () => {
       images,
     )
 
-    expect(pet.id).toEqual(expect.any(String))
+    const { pets } = await sut.execute({
+      city: 'cidade',
+      state: 'estado',
+      size: 'medium',
+    })
   })
 })

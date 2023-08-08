@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { FindByAttributesProps, PetsRespository } from '../pets-repository'
 import { prisma } from '@/lib/prisma'
+import { DataQueryFilterPets } from '@/lib/data-query-pets'
 
 export class PrismaPetsRepository implements PetsRespository {
   async findByCollar(collar: string) {
@@ -41,12 +42,7 @@ export class PrismaPetsRepository implements PetsRespository {
   }
 
   async findByFilter(data: FindByAttributesProps) {
-    const query = Object.fromEntries(
-      Object.entries(data).filter(
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ([c, v]) => v != null && c !== 'city' && c !== 'state',
-      ),
-    )
+    const { query } = DataQueryFilterPets(data)
 
     const pets = await prisma.pet.findMany({
       where: {

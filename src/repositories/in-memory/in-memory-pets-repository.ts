@@ -1,6 +1,7 @@
 import { Image, Pet, Prisma } from '@prisma/client'
-import { PetsRespository } from '../pets-repository'
+import { FindByAttributesProps, PetsRespository } from '../pets-repository'
 import { randomUUID } from 'node:crypto'
+import { DataQueryFilterPets } from '@/lib/data-query-pets'
 
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
@@ -43,5 +44,12 @@ export class InMemoryPetsRepository implements PetsRespository {
     this.items.push(pet)
 
     return pet
+  }
+
+  async findByFilter(data: FindByAttributesProps) {
+    const { query } = DataQueryFilterPets(data)
+    const pets = this.items.filter((pet) => {
+      return null
+    })
   }
 }

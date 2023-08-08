@@ -15,5 +15,5 @@ export interface PetsRespository {
     images: { url: string }[],
   ): Promise<Pet>
   findByCollar(collar: string): Promise<Pet | null>
-  // findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
+  findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
 }
