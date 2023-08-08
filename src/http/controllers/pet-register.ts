@@ -14,18 +14,13 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     anvironment: z.string(),
     org_id: z.string(),
   })
-
   const data = petBodySchema.parse(req.body)
-
   const images = [{ url: 'teste1' }, { url: 'teste2' }]
-
   try {
     const petRegisterUseCase = makePetRegisterUseCase()
-
     await petRegisterUseCase.execute({ ...data, images })
   } catch (err) {
     console.log(err)
   }
-
   return res.status(201).send()
 }
