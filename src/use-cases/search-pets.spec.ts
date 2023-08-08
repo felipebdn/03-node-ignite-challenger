@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { PetRegisterUseCase } from './register-pet'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { hash } from 'bcryptjs'
 import { FetchPetsAroundCityUseCase } from './search-pets'
@@ -45,7 +44,7 @@ describe('Pets Search Use Case', () => {
       {
         collar: '1',
         name: 'Felipe',
-        energy_level: 5,
+        energy_level: 4,
         size: 'small',
         age: 'adolescent',
         description: 'z.string()',
@@ -61,19 +60,34 @@ describe('Pets Search Use Case', () => {
         name: 'Felipe',
         energy_level: 5,
         size: 'medium',
-        age: 'adolescent',
+        age: 'cub',
         description: 'z.string()',
         independence: 'medium',
         anvironment: 'Lugares fechados',
-        org_id: 'org-02',
+        org_id: 'org-021',
       },
       images,
     )
 
-    const { pets } = await sut.execute({
+    const data = await sut.execute({
       city: 'cidade',
       state: 'estado',
-      size: 'medium',
+      energy_level: 5,
     })
+    console.log(data)
+
+    expect(data?.pets).toEqual([
+      expect.objectContaining({
+        collar: '2',
+        name: 'Felipe',
+        energy_level: 5,
+        size: 'medium',
+        age: 'cub',
+        description: 'z.string()',
+        independence: 'medium',
+        anvironment: 'Lugares fechados',
+        org_id: 'org-021',
+      }),
+    ])
   })
 })

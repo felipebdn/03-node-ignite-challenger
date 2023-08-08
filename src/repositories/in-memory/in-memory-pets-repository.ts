@@ -2,6 +2,7 @@ import { Image, Pet, Prisma } from '@prisma/client'
 import { FindByAttributesProps, PetsRespository } from '../pets-repository'
 import { randomUUID } from 'node:crypto'
 import { DataQueryFilterPets } from '@/lib/data-query-pets'
+import console from 'node:console'
 
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
@@ -48,8 +49,41 @@ export class InMemoryPetsRepository implements PetsRespository {
 
   async findByFilter(data: FindByAttributesProps) {
     const { query } = DataQueryFilterPets(data)
+    console.log(query)
+
     const pets = this.items.filter((pet) => {
-      return null
+      for (const [key, value] of Object.entries(query)) {
+        if (key === 'age') {
+          if (value === 'cub') {
+            return pet.age === 'cub'
+          } else if (value === 'adolescent') {
+            return pet.age === 'adolescent'
+          } else if (value === 'elderly') {
+            return pet.age === 'elderly'
+          }
+        } else if (key === 'energy_level') {
+          return pet.age === value
+        } else if (key === 'size') {
+          if (value === 'small') {
+            return pet.size === 'small'
+          } else if (value === 'medium') {
+            return pet.size === 'medium'
+          } else if (value === 'big') {
+            return pet.size === 'big'
+          }
+        } else if (key === 'independence') {
+          if (value === 'low') {
+            return pet.independence === 'low'
+          } else if (value === 'medium') {
+            return pet.independence === 'medium'
+          } else if (value === 'high') {
+            return pet.independence === 'high'
+          }
+        }
+      }
+      return false
     })
+
+    return pets
   }
 }

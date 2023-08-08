@@ -4,10 +4,10 @@ import { Pet } from '@prisma/client'
 interface FetchPetsAroundCityUseCaseRequest {
   state: string
   city: string
-  age?: string
+  age?: 'cub' | 'adolescent' | 'elderly'
   energy_level?: number
-  size?: string
-  independence?: string
+  size?: 'small' | 'medium' | 'big'
+  independence?: 'low' | 'medium' | 'high'
 }
 interface FetchPetsAroundCityUseCaseResponse {
   pets: Pet[]
