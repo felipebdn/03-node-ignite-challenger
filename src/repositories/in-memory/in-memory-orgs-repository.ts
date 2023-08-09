@@ -30,4 +30,16 @@ export class InMemoryOrgsRepository implements OrgsRepository {
 
     return org
   }
+
+  async findByStateAndCidy(state: string, city: string) {
+    const orgs = this.items.filter((item) => {
+      return item.city === city && item.state === state
+    })
+
+    if (!orgs) {
+      return null
+    }
+
+    return orgs
+  }
 }

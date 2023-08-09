@@ -1,5 +1,7 @@
+import { OrgsRepository } from '@/repositories/orgs-repository'
 import { PetsRespository } from '@/repositories/pets-repository'
 import { Pet } from '@prisma/client'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface FetchPetsAroundCityUseCaseRequest {
   state: string
@@ -13,7 +15,11 @@ interface FetchPetsAroundCityUseCaseResponse {
   pets: Pet[]
 }
 export class FetchPetsAroundCityUseCase {
-  constructor(private petsRepository: PetsRespository) {}
+  constructor(
+    private petsRepository: PetsRespository,
+    private orgsRepository: OrgsRepository,
+  ) {}
+
   async execute({
     city,
     state,
@@ -22,9 +28,14 @@ export class FetchPetsAroundCityUseCase {
     independence,
     size,
   }: FetchPetsAroundCityUseCaseRequest): Promise<FetchPetsAroundCityUseCaseResponse | null> {
+    const orgs = await this.orgsRepository.findByStateAndCidy(state, city)
+
+    if (!orgs) {
+      throw new ResourceNotFoundError()
+    }
+
     const pets = await this.petsRepository.findByFilter({
-      city,
-      state,
+      orgs_ids: orgs.map((org) => org.id),
       age,
       energy_level,
       independence,

@@ -1,8 +1,7 @@
 import { Image, Pet, Prisma } from '@prisma/client'
 
 export interface FindByAttributesProps {
-  state: string
-  city: string
+  orgs_ids: string[]
   age?: 'cub' | 'adolescent' | 'elderly'
   energy_level?: number
   size?: 'small' | 'medium' | 'big'
