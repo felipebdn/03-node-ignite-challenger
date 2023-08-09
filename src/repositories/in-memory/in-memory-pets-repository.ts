@@ -55,6 +55,11 @@ export class InMemoryPetsRepository implements PetsRespository {
     const { query } = DataQueryFilterPets(data)
 
     const pets = this.items.filter((pet) => {
+      const petExistsInOrg = data.orgs_ids.find((org) => org === pet.org_id)
+
+      if (!petExistsInOrg) {
+        return false
+      }
       for (const [key, value] of Object.entries(query)) {
         if (key === 'age') {
           if (value === 'cub') {
@@ -84,7 +89,6 @@ export class InMemoryPetsRepository implements PetsRespository {
           }
         }
       }
-
       return false
     })
     return pets
