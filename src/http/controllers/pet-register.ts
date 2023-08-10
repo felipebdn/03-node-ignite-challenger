@@ -3,8 +3,6 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 export async function petRegister(req: FastifyRequest, res: FastifyReply) {
-  await req.jwtVerify()
-
   const petBodySchema = z.object({
     collar: z.string(),
     name: z.string(),
@@ -29,7 +27,7 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
       requirements,
     })
   } catch (err) {
-    console.log(err)
+    res.status(400).send()
   }
   return res.status(201).send()
 }
