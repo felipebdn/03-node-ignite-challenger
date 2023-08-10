@@ -1,21 +1,31 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
 import { GetInfoPetUseCase } from './get-info-pet'
+import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository'
+import { InMemoryRequirementsRepository } from '@/repositories/in-memory/in-memory-requirements-repository'
 
 let inMemoryPetsRepository: InMemoryPetsRepository
+let inMemoryImagesRepository: InMemoryImagesRepository
+let inMemoryRequirementsRepository: InMemoryRequirementsRepository
 let sut: GetInfoPetUseCase
 
 describe('Pets Search Use Case', () => {
   beforeEach(async () => {
     inMemoryPetsRepository = new InMemoryPetsRepository()
-    sut = new GetInfoPetUseCase(inMemoryPetsRepository)
+    inMemoryImagesRepository = new InMemoryImagesRepository()
+    inMemoryRequirementsRepository = new InMemoryRequirementsRepository()
+    sut = new GetInfoPetUseCase(
+      inMemoryPetsRepository,
+      inMemoryImagesRepository,
+      inMemoryRequirementsRepository,
+    )
   })
   it('should be able to search pets', async () => {
     const images = [{ url: 'teste1' }, { url: 'teste2' }]
     const requirements = [{ title: 'wallison queime bastante' }]
 
-    await inMemoryPetsRepository.create(
-      {
+    await inMemoryPetsRepository.create({
+      data: {
         collar: '2',
         name: 'Felipe',
         energy_level: 4,
@@ -28,7 +38,7 @@ describe('Pets Search Use Case', () => {
       },
       requirements,
       images,
-    )
+    })
     const { id } = await inMemoryPetsRepository.create(
       {
         collar: '1',
