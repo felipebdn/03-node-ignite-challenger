@@ -9,7 +9,7 @@ let inMemoryImagesRepository: InMemoryImagesRepository
 let inMemoryRequirementsRepository: InMemoryRequirementsRepository
 let sut: GetInfoPetUseCase
 
-describe('Pets Search Use Case', () => {
+describe('Pets Get Info Pet Use Case', () => {
   beforeEach(async () => {
     inMemoryPetsRepository = new InMemoryPetsRepository()
     inMemoryImagesRepository = new InMemoryImagesRepository()
@@ -20,40 +20,29 @@ describe('Pets Search Use Case', () => {
       inMemoryRequirementsRepository,
     )
   })
-  it('should be able to search pets', async () => {
-    const images = [{ url: 'teste1' }, { url: 'teste2' }]
-    const requirements = [{ title: 'wallison queime bastante' }]
-
+  it('should be able to get info of pet', async () => {
     await inMemoryPetsRepository.create({
-      data: {
-        collar: '2',
-        name: 'Felipe',
-        energy_level: 4,
-        size: 'small',
-        age: 'adolescent',
-        description: 'z.string()',
-        independence: 'medium',
-        anvironment: 'Lugares fechados',
-        org_id: 'org-01',
-      },
-      requirements,
-      images,
+      collar: '2',
+      name: 'Felipe',
+      energy_level: 4,
+      size: 'small',
+      age: 'adolescent',
+      description: 'z.string()',
+      independence: 'medium',
+      anvironment: 'Lugares fechados',
+      org_id: 'org-01',
     })
-    const { id } = await inMemoryPetsRepository.create(
-      {
-        collar: '1',
-        name: 'Felipe',
-        energy_level: 4,
-        size: 'small',
-        age: 'adolescent',
-        description: 'z.string()',
-        independence: 'medium',
-        anvironment: 'Lugares fechados',
-        org_id: 'org-01',
-      },
-      requirements,
-      images,
-    )
+    const { id } = await inMemoryPetsRepository.create({
+      collar: '1',
+      name: 'Felipe',
+      energy_level: 4,
+      size: 'small',
+      age: 'adolescent',
+      description: 'z.string()',
+      independence: 'medium',
+      anvironment: 'Lugares fechados',
+      org_id: 'org-01',
+    })
 
     const data = await sut.execute(id)
 
@@ -69,9 +58,5 @@ describe('Pets Search Use Case', () => {
       org_id: 'org-01',
       id: expect.any(String),
     })
-    expect(data?.images).toEqual([
-      { pet_id: expect.any(String), url: 'teste1', id: expect.any(String) },
-      { pet_id: expect.any(String), url: 'teste2', id: expect.any(String) },
-    ])
   })
 })

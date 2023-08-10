@@ -1,8 +1,10 @@
-import { makePetRegisterUseCase } from '@/use-cases/factories/make-pet-register-use-case'
+import { makePetRegisterUseCase } from '@/use-cases/factories/make-register-pet-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 export async function petRegister(req: FastifyRequest, res: FastifyReply) {
+  await req.jwtVerify()
+
   const petBodySchema = z.object({
     collar: z.string(),
     name: z.string(),
@@ -12,13 +14,20 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     description: z.string(),
     independence: z.enum(['low', 'medium', 'high']),
     anvironment: z.string(),
-    org_id: z.string(),
   })
   const data = petBodySchema.parse(req.body)
   const images = [{ url: 'teste1' }, { url: 'teste2' }]
+  const requirements = [{ title: 'teste' }]
   try {
     const petRegisterUseCase = makePetRegisterUseCase()
-    await petRegisterUseCase.execute({ ...data, images })
+    await petRegisterUseCase.execute({
+      data: {
+        ...data,
+        org_id: req.user.sub,
+      },
+      images,
+      requirements,
+    })
   } catch (err) {
     console.log(err)
   }

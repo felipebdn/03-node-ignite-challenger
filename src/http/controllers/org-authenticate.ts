@@ -13,13 +13,20 @@ export async function orgAuthenticate(req: FastifyRequest, res: FastifyReply) {
 
   try {
     const orgAuthenticateUseCase = MakeOrgAuthenticateUseCase()
-    await orgAuthenticateUseCase.execute(data)
+    const { org } = await orgAuthenticateUseCase.execute(data)
+    const token = await res.jwtSign(
+      {},
+      {
+        sign: {
+          sub: org.id,
+        },
+      },
+    )
+    res.status(200).send({ token })
   } catch (err) {
     if (err instanceof OrgInvalidCredentialError) {
       return res.status(400).send({ message: err.message })
     }
     throw err
   }
-
-  res.status(200).send()
 }

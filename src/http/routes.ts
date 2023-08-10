@@ -7,6 +7,8 @@ import { FetchPets } from './controllers/fetch-pets'
 export async function appRoutes(app: FastifyInstance) {
   app.post('/orgs', orgRegister)
   app.post('/sessions', orgAuthenticate)
-  app.post('/pets', petRegister)
   app.get('/pets', FetchPets)
+
+  /** Authenticated */
+  app.post('/pets', petRegister)
 }

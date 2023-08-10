@@ -1,4 +1,4 @@
-import { makePestAroundCityUseCase } from '@/use-cases/factories/make-pets-around-city-use-case'
+import { makeSearchPetsUseCase } from '@/use-cases/factories/make-search-pets-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -6,15 +6,15 @@ export async function FetchPets(req: FastifyRequest, res: FastifyReply) {
   const queryParamsSchema = z.object({
     state: z.string().length(2),
     city: z.string(),
-    age: z.string().optional(),
+    age: z.enum(['cub', 'adolescent', 'elderly']).optional(),
     energy_level: z.coerce.number().min(1).max(5).optional(),
-    size: z.string().optional(),
-    independence: z.string().optional(),
+    size: z.enum(['small', 'medium', 'big']).optional(),
+    independence: z.enum(['low', 'medium', 'high']).optional(),
   })
 
   const data = queryParamsSchema.parse(req.query)
 
-  const pestAroundCityUseCase = makePestAroundCityUseCase()
+  const pestAroundCityUseCase = makeSearchPetsUseCase()
 
   const pets = await pestAroundCityUseCase.execute(data)
 

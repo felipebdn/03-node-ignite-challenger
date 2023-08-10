@@ -13,10 +13,7 @@ export class PrismaPetsRepository implements PetsRespository {
     return pet
   }
 
-  async create(
-    data: Prisma.PetUncheckedCreateInput,
-    images: { url: string }[],
-  ) {
+  async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = await prisma.pet.create({
       data: {
         age: data.age,
@@ -28,14 +25,6 @@ export class PrismaPetsRepository implements PetsRespository {
         name: data.name,
         size: data.size,
         org_id: data.org_id,
-        Images: {
-          createMany: {
-            data: images,
-          },
-        },
-      },
-      include: {
-        Images: true,
       },
     })
     return pet
@@ -46,16 +35,19 @@ export class PrismaPetsRepository implements PetsRespository {
 
     const pets = await prisma.pet.findMany({
       where: {
-        org: {
-          city: {
-            contains: data.city,
-          },
-          state: data.state,
-        },
         ...query,
       },
     })
 
     return pets
+  }
+
+  async findById(id: string) {
+    const pet = await prisma.pet.findUnique({
+      where: {
+        id,
+      },
+    })
+    return pet
   }
 }
