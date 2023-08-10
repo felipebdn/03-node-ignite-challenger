@@ -1,12 +1,10 @@
-import { Image, Pet, Prisma, Requirement } from '@prisma/client'
+import { Pet, Prisma } from '@prisma/client'
 import { FindByAttributesProps, PetsRespository } from '../pets-repository'
 import { randomUUID } from 'node:crypto'
 import { DataQueryFilterPets } from '@/lib/data-query-pets'
 
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
-  public imagesPet: Image[] = []
-  public requirements: Requirement[] = []
 
   async findByCollar(collar: string) {
     const pet = this.items.find((item) => item.collar === collar)
@@ -16,11 +14,7 @@ export class InMemoryPetsRepository implements PetsRespository {
     return pet
   }
 
-  async create(
-    data: Prisma.PetUncheckedCreateInput,
-    requirements: { title: string }[],
-    images: { url: string }[],
-  ) {
+  async create(data: Prisma.PetUncheckedCreateInput) {
     const pet: Pet = {
       id: data.id ?? randomUUID(),
       age: data.age,
@@ -33,20 +27,7 @@ export class InMemoryPetsRepository implements PetsRespository {
       org_id: data.org_id,
       size: data.size,
     }
-    images.map((image) => {
-      return this.imagesPet.push({
-        id: randomUUID(),
-        pet_id: pet.id,
-        url: image.url,
-      })
-    })
-    requirements.map((requirement) => {
-      return this.requirements.push({
-        id: randomUUID(),
-        pet_id: pet.id,
-        title: requirement.title,
-      })
-    })
+
     this.items.push(pet)
     return pet
   }
@@ -96,12 +77,11 @@ export class InMemoryPetsRepository implements PetsRespository {
 
   async findById(id: string) {
     const pet = this.items.find((item) => item.id === id)
-    const images = this.imagesPet.filter((image) => image.pet_id === id)
 
     if (!pet) {
       return null
     }
 
-    return { pet, images }
+    return pet
   }
 }
