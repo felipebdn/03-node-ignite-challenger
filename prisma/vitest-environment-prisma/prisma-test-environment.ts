@@ -1,7 +1,7 @@
 import type { Environment } from 'vitest'
 
 export default <Environment>{
-  name: 'custom',
+  name: 'prisma',
   transformMode: 'web',
   async setup() {
     console.log('Setup')
