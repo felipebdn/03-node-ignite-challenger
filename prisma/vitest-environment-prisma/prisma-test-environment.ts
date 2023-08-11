@@ -1,4 +1,4 @@
-import { Environment } from 'vitest'
+import type { Environment } from 'vitest'
 
 export default <Environment>{
   name: 'prisma',
