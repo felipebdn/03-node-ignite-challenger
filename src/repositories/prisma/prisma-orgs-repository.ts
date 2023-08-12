@@ -9,9 +9,6 @@ export class PrismaOrgsRepository implements OrgsRepository {
         email,
       },
     })
-    if (org) {
-      return null
-    }
     return org
   }
 
