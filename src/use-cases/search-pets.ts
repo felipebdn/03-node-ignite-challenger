@@ -29,6 +29,7 @@ export class FetchPetsAroundCityUseCase {
     size,
   }: FetchPetsAroundCityUseCaseRequest): Promise<FetchPetsAroundCityUseCaseResponse | null> {
     const orgs = await this.orgsRepository.findByStateAndCidy(state, city)
+
     if (!orgs) {
       throw new ResourceNotFoundError()
     }
@@ -39,6 +40,7 @@ export class FetchPetsAroundCityUseCase {
       independence,
       size,
     })
+
     if (!pets) {
       return null
     }

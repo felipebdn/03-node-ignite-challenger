@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client'
 import { FindByAttributesProps, PetsRespository } from '../pets-repository'
 import { prisma } from '@/lib/prisma'
 import { DataQueryFilterPets } from '@/lib/data-query-pets'
+import { z } from 'zod'
 
 export class PrismaPetsRepository implements PetsRespository {
   async findByCollar(collar: string) {
@@ -31,11 +32,25 @@ export class PrismaPetsRepository implements PetsRespository {
   }
 
   async findByFilter(data: FindByAttributesProps) {
+    const querySchema = z.object({
+      orgs_ids: z.string().array(),
+      age: z.enum(['cub', 'adolescent', 'elderly']).optional(),
+      energy_level: z.coerce.number().min(1).max(5).optional(),
+      size: z.enum(['small', 'medium', 'big']).optional(),
+      independence: z.enum(['low', 'medium', 'high']).optional(),
+    })
     const { query } = DataQueryFilterPets(data)
+
+    const { orgs_ids, ...resto } = querySchema.parse(query)
+
+    console.log(orgs_ids, resto)
 
     const pets = await prisma.pet.findMany({
       where: {
-        ...query,
+        org_id: {
+          in: orgs_ids,
+        },
+        ...resto,
       },
     })
 
