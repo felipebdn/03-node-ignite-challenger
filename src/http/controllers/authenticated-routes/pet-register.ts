@@ -1,5 +1,5 @@
-import { makePetRegisterUseCase } from '@/use-cases/factories/make-register-pet-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
+import { makePetRegisterUseCase } from '@/use-cases/factories/make-register-pet-use-case'
 import { z } from 'zod'
 
 export async function petRegister(req: FastifyRequest, res: FastifyReply) {
