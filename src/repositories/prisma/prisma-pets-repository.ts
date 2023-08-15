@@ -28,6 +28,8 @@ export class PrismaPetsRepository implements PetsRespository {
         org_id: data.org_id,
       },
     })
+    console.log(pet)
+
     return pet
   }
 
@@ -43,15 +45,21 @@ export class PrismaPetsRepository implements PetsRespository {
 
     const { orgs_ids, ...resto } = querySchema.parse(query)
 
-    console.log(orgs_ids, resto)
-
     const pets = await prisma.pet.findMany({
       where: {
         org_id: {
           in: orgs_ids,
         },
-        ...resto,
+        AND: {
+          ...resto,
+        },
       },
+    })
+    console.log({
+      org_id: {
+        in: orgs_ids,
+      },
+      ...resto,
     })
 
     return pets

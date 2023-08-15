@@ -14,6 +14,8 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     anvironment: z.string(),
   })
   const data = petBodySchema.parse(req.body)
+  console.log(data)
+
   const images = [{ url: 'teste1' }, { url: 'teste2' }]
   const requirements = [{ title: 'teste' }]
   try {

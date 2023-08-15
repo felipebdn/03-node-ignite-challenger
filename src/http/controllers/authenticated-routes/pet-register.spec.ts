@@ -15,7 +15,7 @@ describe('Register Pet (e2e)', () => {
   it('should be able to register pet', async () => {
     const { token } = await createAndAuthenticateOrg(app)
 
-    const res = await request(app.server)
+    const response = await request(app.server)
       .post('/pets')
       .set('Authorization', `Bearer ${token}`)
       .send({
@@ -27,9 +27,8 @@ describe('Register Pet (e2e)', () => {
         description: 'z.string()',
         independence: 'medium',
         anvironment: 'lugares pequenos',
-        org_id: '0fe3203d-1b1f-4581-bd69-1ab50bfd7e95',
       })
 
-    expect(res.statusCode).toEqual(201)
+    expect(response.statusCode).toEqual(201)
   })
 })
