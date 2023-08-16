@@ -22,7 +22,24 @@ export async function orgAuthenticate(req: FastifyRequest, res: FastifyReply) {
         },
       },
     )
-    res.status(200).send({ token })
+    const refreshToken = await res.jwtSign(
+      {},
+      {
+        sign: {
+          sub: org.id,
+          expiresIn: '7d',
+        },
+      },
+    )
+    res
+      .setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true,
+        sameSite: true,
+        httpOnly: true,
+      })
+      .status(200)
+      .send({ token })
   } catch (err) {
     if (err instanceof OrgInvalidCredentialError) {
       return res.status(400).send({ message: err.message })
