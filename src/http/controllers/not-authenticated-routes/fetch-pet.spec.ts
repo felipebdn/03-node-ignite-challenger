@@ -44,19 +44,39 @@ describe('Fetch Pets (e2e)', () => {
       ],
     })
 
-    const res = await request(app.server).get('/pets').send({
-      state: 'PA',
-      city: 'Redenção',
-    })
+    const res = await request(app.server)
+      .get('/pets')
+      .query({
+        state: 'PA',
+        city: 'Conceição do Araguaia',
+      })
+      .send()
 
     expect(res.statusCode).toEqual(200)
     expect(res.body.pets).toHaveLength(2)
     expect(res.body.pets).toEqual([
       expect.objectContaining({
-        id: expect.any(String),
+        collar: '1',
       }),
       expect.objectContaining({
-        id: expect.any(String),
+        collar: '2',
+      }),
+    ])
+
+    const res1 = await request(app.server)
+      .get('/pets')
+      .query({
+        state: 'PA',
+        city: 'Conceição do Araguaia',
+        size: 'medium',
+      })
+      .send()
+
+    expect(res1.statusCode).toEqual(200)
+    expect(res1.body.pets).toHaveLength(1)
+    expect(res1.body.pets).toEqual([
+      expect.objectContaining({
+        collar: '2',
       }),
     ])
   })

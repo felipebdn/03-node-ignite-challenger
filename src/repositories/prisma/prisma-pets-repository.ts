@@ -28,7 +28,6 @@ export class PrismaPetsRepository implements PetsRespository {
         org_id: data.org_id,
       },
     })
-    console.log(pet)
 
     return pet
   }
@@ -54,12 +53,6 @@ export class PrismaPetsRepository implements PetsRespository {
           ...resto,
         },
       },
-    })
-    console.log({
-      org_id: {
-        in: orgs_ids,
-      },
-      ...resto,
     })
 
     return pets
