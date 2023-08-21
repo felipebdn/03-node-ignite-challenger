@@ -1,14 +1,22 @@
 import fastify from 'fastify'
 import { ZodError } from 'zod'
-import fastifyJwt from '@fastify/jwt'
+import jwt from '@fastify/jwt'
 import fastifyCookie from '@fastify/cookie'
+import multipart from '@fastify/multipart'
+import cors from '@fastify/cors'
 import { env } from './env'
 import { authRoutes } from './http/controllers/authenticated-routes/routes'
 import { notAuthRoutes } from './http/controllers/not-authenticated-routes/routes'
 
 export const app = fastify()
 
-app.register(fastifyJwt, {
+app.register(multipart)
+
+app.register(cors, {
+  origin: true, // ['http://localhost:3000']
+})
+
+app.register(jwt, {
   secret: env.JWT_SECRET,
   cookie: {
     cookieName: 'refreshToken',
