@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { makePetRegisterUseCase } from '@/use-cases/factories/make-register-pet-use-case'
 import { z } from 'zod'
+import { PetAlreadyExistsError } from '@/use-cases/errors/pet-already-exists-error'
 
 export async function petRegister(req: FastifyRequest, res: FastifyReply) {
   const petBodySchema = z.object({
@@ -17,12 +18,20 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
   const data = petBodySchema.parse(req.body)
 
   const petRegisterUseCase = makePetRegisterUseCase()
-  await petRegisterUseCase.execute({
-    data: {
-      ...data,
-      org_id: req.user.sub,
-    },
-  })
+
+  try {
+    await petRegisterUseCase.execute({
+      data: {
+        ...data,
+        org_id: req.user.sub,
+      },
+    })
+  } catch (err) {
+    if (err instanceof PetAlreadyExistsError) {
+      return res.status(409).send({ message: err.message })
+    }
+    throw err
+  }
 
   return res.status(201).send()
 }
