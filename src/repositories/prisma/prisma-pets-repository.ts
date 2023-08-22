@@ -26,6 +26,7 @@ export class PrismaPetsRepository implements PetsRespository {
         name: data.name,
         size: data.size,
         org_id: data.org_id,
+        requirements: data.requirements,
       },
     })
 

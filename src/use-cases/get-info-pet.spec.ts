@@ -27,6 +27,7 @@ describe('Pets Get Info Pet Use Case', () => {
       independence: 'medium',
       anvironment: 'Lugares fechados',
       org_id: 'org-01',
+      requirements: 'cuidado',
     })
     const { id } = await inMemoryPetsRepository.create({
       collar: '1',
@@ -38,6 +39,7 @@ describe('Pets Get Info Pet Use Case', () => {
       independence: 'medium',
       anvironment: 'Lugares fechados',
       org_id: 'org-01',
+      requirements: 'cuidado',
     })
 
     const data = await sut.execute(id)
@@ -51,6 +53,7 @@ describe('Pets Get Info Pet Use Case', () => {
       description: 'z.string()',
       independence: 'medium',
       anvironment: 'Lugares fechados',
+      requirements: 'cuidado',
       org_id: 'org-01',
       id: expect.any(String),
     })

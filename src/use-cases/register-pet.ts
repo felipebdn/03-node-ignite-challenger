@@ -12,6 +12,7 @@ interface PetRegisterUseCaseRequest {
     description: string
     independence: 'low' | 'medium' | 'high'
     anvironment: string
+    requirements: string
     org_id: string
   }
   requirements: {

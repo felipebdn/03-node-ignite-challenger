@@ -12,21 +12,21 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     description: z.string(),
     independence: z.enum(['low', 'medium', 'high']),
     anvironment: z.string(),
+    requirements: z.string(),
   })
   const data = petBodySchema.parse(req.body)
 
   const requirements = [{ title: 'teste' }]
-  try {
-    const petRegisterUseCase = makePetRegisterUseCase()
-    await petRegisterUseCase.execute({
-      data: {
-        ...data,
-        org_id: req.user.sub,
-      },
-      requirements,
-    })
-  } catch (err) {
-    res.status(400).send()
-  }
+  const petRegisterUseCase = makePetRegisterUseCase()
+  const pet = await petRegisterUseCase.execute({
+    data: {
+      ...data,
+      org_id: req.user.sub,
+    },
+    requirements,
+  })
+
+  console.log(pet)
+
   return res.status(201).send()
 }

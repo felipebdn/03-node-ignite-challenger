@@ -26,6 +26,7 @@ export class InMemoryPetsRepository implements PetsRespository {
       name: data.name,
       org_id: data.org_id,
       size: data.size,
+      requirements: data.requirements,
     }
 
     this.items.push(pet)

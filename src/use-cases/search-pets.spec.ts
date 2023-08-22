@@ -74,6 +74,7 @@ describe('Pets Search Use Case', () => {
       independence: 'medium',
       anvironment: 'Lugares fechados',
       org_id: org_id_01.id,
+      requirements: 'cuidado',
     })
     await inMemoryPetsRepository.create({
       collar: '2',
@@ -85,6 +86,7 @@ describe('Pets Search Use Case', () => {
       independence: 'medium',
       anvironment: 'Lugares fechados',
       org_id: org_id_01.id,
+      requirements: 'cuidado',
     })
 
     // create pets from org_id_02
@@ -98,6 +100,7 @@ describe('Pets Search Use Case', () => {
       independence: 'medium',
       anvironment: 'Lugares fechados',
       org_id: org_id_02.id,
+      requirements: 'cuidado',
     })
     await inMemoryPetsRepository.create({
       collar: '4',
@@ -109,6 +112,7 @@ describe('Pets Search Use Case', () => {
       independence: 'medium',
       anvironment: 'Lugares fechados',
       org_id: org_id_02.id,
+      requirements: 'cuidado',
     })
 
     const data = await sut.execute({
