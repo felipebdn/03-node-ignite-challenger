@@ -1,17 +1,13 @@
+import { s3 } from '@/lib/s3'
+import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { randomUUID } from 'crypto'
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { createWriteStream } from 'fs'
-import { extname, resolve } from 'path'
-import { pipeline } from 'stream'
-import { promisify } from 'util'
-
-const pump = promisify(pipeline)
+import { extname } from 'path'
+import { env } from 'process'
 
 export async function uploadRoute(req: FastifyRequest, res: FastifyReply) {
   const upload = await req.file({
-    limits: {
-      fieldSize: 5_242_880, // 5MB
-    },
+    limits: { fileSize: 5_242_880 },
   })
   if (!upload) {
     return res.status(400).send()
@@ -29,11 +25,15 @@ export async function uploadRoute(req: FastifyRequest, res: FastifyReply) {
 
   const fileName = fileId.concat(extension)
 
-  const writeStream = createWriteStream(
-    resolve(__dirname, '../../../../uploads', fileName),
-  )
+  const putObjectCommand = new PutObjectCommand({
+    Bucket: env.AWS_BUCKET,
+    Key: fileName,
+    Body: await upload.toBuffer(),
+    ContentType: upload.mimetype,
+    ACL: 'public-read',
+  })
 
-  await pump(upload.file, writeStream)
+  await s3.send(putObjectCommand)
 
   return { ok: true }
 }
