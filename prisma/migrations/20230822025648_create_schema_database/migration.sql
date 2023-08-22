@@ -7,6 +7,7 @@ CREATE TABLE "pets" (
     "size" TEXT NOT NULL,
     "age" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "requirements" TEXT NOT NULL,
     "independence" TEXT NOT NULL,
     "anvironment" TEXT NOT NULL,
     "org_id" TEXT NOT NULL,
@@ -38,15 +39,6 @@ CREATE TABLE "orgs" (
     CONSTRAINT "orgs_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
-CREATE TABLE "requirements" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "pet_id" TEXT NOT NULL,
-
-    CONSTRAINT "requirements_pkey" PRIMARY KEY ("id")
-);
-
 -- CreateIndex
 CREATE UNIQUE INDEX "pets_collar_key" ON "pets"("collar");
 
@@ -61,6 +53,3 @@ ALTER TABLE "pets" ADD CONSTRAINT "pets_org_id_fkey" FOREIGN KEY ("org_id") REFE
 
 -- AddForeignKey
 ALTER TABLE "images" ADD CONSTRAINT "images_pet_id_fkey" FOREIGN KEY ("pet_id") REFERENCES "pets"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "requirements" ADD CONSTRAINT "requirements_pet_id_fkey" FOREIGN KEY ("pet_id") REFERENCES "pets"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

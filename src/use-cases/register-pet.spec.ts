@@ -2,27 +2,16 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
 import { PetRegisterUseCase } from './register-pet'
 import { PetAlreadyExistsError } from './errors/pet-already-exists-error'
-import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository'
-import { InMemoryRequirementsRepository } from '@/repositories/in-memory/in-memory-requirements-repository'
 
 let inMemoryPetsRepository: InMemoryPetsRepository
-let inMemoryImagesRepository: InMemoryImagesRepository
-let inMemoryRequirementsRepository: InMemoryRequirementsRepository
 let sut: PetRegisterUseCase
 
 describe('Pets Register Use Case', () => {
   beforeEach(() => {
     inMemoryPetsRepository = new InMemoryPetsRepository()
-    inMemoryImagesRepository = new InMemoryImagesRepository()
-    inMemoryRequirementsRepository = new InMemoryRequirementsRepository()
-    sut = new PetRegisterUseCase(
-      inMemoryPetsRepository,
-      inMemoryImagesRepository,
-      inMemoryRequirementsRepository,
-    )
+    sut = new PetRegisterUseCase(inMemoryPetsRepository)
   })
   it('should be able to register pet', async () => {
-    const images = [{ url: 'teste1' }, { url: 'teste2' }]
     const requirements = [{ title: 'wallison queime bastante' }]
 
     const { pet } = await sut.execute({
@@ -38,13 +27,11 @@ describe('Pets Register Use Case', () => {
         org_id: 'org_id',
       },
       requirements,
-      images,
     })
 
     expect(pet.id).toEqual(expect.any(String))
   })
   it('should be able to register pet with same collar twice', async () => {
-    const images = [{ url: 'teste1' }, { url: 'teste2' }]
     const requirements = [{ title: 'wallison queime bastante' }]
 
     await sut.execute({
@@ -60,7 +47,6 @@ describe('Pets Register Use Case', () => {
         org_id: 'org_id',
       },
       requirements,
-      images,
     })
 
     expect(async () => {
@@ -77,7 +63,6 @@ describe('Pets Register Use Case', () => {
           org_id: 'org_id',
         },
         requirements,
-        images,
       })
     }).rejects.toBeInstanceOf(PetAlreadyExistsError)
   })

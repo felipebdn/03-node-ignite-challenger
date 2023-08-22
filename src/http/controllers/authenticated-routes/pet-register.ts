@@ -15,7 +15,6 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
   })
   const data = petBodySchema.parse(req.body)
 
-  const images = [{ url: 'teste1' }, { url: 'teste2' }]
   const requirements = [{ title: 'teste' }]
   try {
     const petRegisterUseCase = makePetRegisterUseCase()
@@ -24,7 +23,6 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
         ...data,
         org_id: req.user.sub,
       },
-      images,
       requirements,
     })
   } catch (err) {

@@ -15,14 +15,14 @@ model Pet {
   size         String
   age          String
   description  String
+  requirements String
   independence String
   anvironment  String
 
   org    Org    @relation(fields: [org_id], references: [id])
   org_id String
 
-  Images       Image[]
-  Requirements Requirement[]
+  Images Image[]
 
   @@map("pets")
 }
@@ -51,14 +51,4 @@ model Org {
   Pets Pet[]
 
   @@map("orgs")
-}
-
-model Requirement {
-  id    String @id @default(uuid())
-  title String
-
-  pets   Pet    @relation(fields: [pet_id], references: [id])
-  pet_id String
-
-  @@map("requirements")
 }

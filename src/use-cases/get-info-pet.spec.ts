@@ -2,22 +2,18 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
 import { GetInfoPetUseCase } from './get-info-pet'
 import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository'
-import { InMemoryRequirementsRepository } from '@/repositories/in-memory/in-memory-requirements-repository'
 
 let inMemoryPetsRepository: InMemoryPetsRepository
 let inMemoryImagesRepository: InMemoryImagesRepository
-let inMemoryRequirementsRepository: InMemoryRequirementsRepository
 let sut: GetInfoPetUseCase
 
 describe('Pets Get Info Pet Use Case', () => {
   beforeEach(async () => {
     inMemoryPetsRepository = new InMemoryPetsRepository()
     inMemoryImagesRepository = new InMemoryImagesRepository()
-    inMemoryRequirementsRepository = new InMemoryRequirementsRepository()
     sut = new GetInfoPetUseCase(
       inMemoryPetsRepository,
       inMemoryImagesRepository,
-      inMemoryRequirementsRepository,
     )
   })
   it('should be able to get info of pet', async () => {

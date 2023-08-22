@@ -41,9 +41,6 @@ describe('Pets Search Use Case', () => {
     })
   })
   it('should be able to search pets', async () => {
-    const images = [{ url: 'teste1' }, { url: 'teste2' }]
-    const requirements = [{ title: 'wallison queime bastante' }]
-
     // create org
     const org_id_01 = await inMemoryOrgsRepository.create({
       name: 'Felipe 1',
@@ -67,68 +64,52 @@ describe('Pets Search Use Case', () => {
     })
 
     // create pets from org_id_01
-    await inMemoryPetsRepository.create(
-      {
-        collar: '1',
-        name: 'Felipe',
-        energy_level: 4,
-        size: 'small',
-        age: 'adolescent',
-        description: 'z.string()',
-        independence: 'medium',
-        anvironment: 'Lugares fechados',
-        org_id: org_id_01.id,
-      },
-      requirements,
-      images,
-    )
-    await inMemoryPetsRepository.create(
-      {
-        collar: '2',
-        name: 'Felipe',
-        energy_level: 5,
-        size: 'medium',
-        age: 'cub',
-        description: 'z.string()',
-        independence: 'medium',
-        anvironment: 'Lugares fechados',
-        org_id: org_id_01.id,
-      },
-      requirements,
-      images,
-    )
+    await inMemoryPetsRepository.create({
+      collar: '1',
+      name: 'Felipe',
+      energy_level: 4,
+      size: 'small',
+      age: 'adolescent',
+      description: 'z.string()',
+      independence: 'medium',
+      anvironment: 'Lugares fechados',
+      org_id: org_id_01.id,
+    })
+    await inMemoryPetsRepository.create({
+      collar: '2',
+      name: 'Felipe',
+      energy_level: 5,
+      size: 'medium',
+      age: 'cub',
+      description: 'z.string()',
+      independence: 'medium',
+      anvironment: 'Lugares fechados',
+      org_id: org_id_01.id,
+    })
 
     // create pets from org_id_02
-    await inMemoryPetsRepository.create(
-      {
-        collar: '3',
-        name: 'Felipe',
-        energy_level: 4,
-        size: 'small',
-        age: 'adolescent',
-        description: 'z.string()',
-        independence: 'medium',
-        anvironment: 'Lugares fechados',
-        org_id: org_id_02.id,
-      },
-      requirements,
-      images,
-    )
-    await inMemoryPetsRepository.create(
-      {
-        collar: '4',
-        name: 'Felipe',
-        energy_level: 5,
-        size: 'medium',
-        age: 'cub',
-        description: 'z.string()',
-        independence: 'medium',
-        anvironment: 'Lugares fechados',
-        org_id: org_id_02.id,
-      },
-      requirements,
-      images,
-    )
+    await inMemoryPetsRepository.create({
+      collar: '3',
+      name: 'Felipe',
+      energy_level: 4,
+      size: 'small',
+      age: 'adolescent',
+      description: 'z.string()',
+      independence: 'medium',
+      anvironment: 'Lugares fechados',
+      org_id: org_id_02.id,
+    })
+    await inMemoryPetsRepository.create({
+      collar: '4',
+      name: 'Felipe',
+      energy_level: 5,
+      size: 'medium',
+      age: 'cub',
+      description: 'z.string()',
+      independence: 'medium',
+      anvironment: 'Lugares fechados',
+      org_id: org_id_02.id,
+    })
 
     const data = await sut.execute({
       city: 'Conceição do Araguaia',
