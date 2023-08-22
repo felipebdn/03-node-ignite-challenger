@@ -2,10 +2,10 @@ import { prisma } from '@/lib/prisma'
 import { ImagesRepository } from '../images-repository'
 
 export class PrismaImagesRepository implements ImagesRepository {
-  async create(data: { url: string }[], petId: string) {
-    const newDate = data.map((item) => {
+  async create(url: string[], petId: string) {
+    const newDate = url.map((item) => {
       return {
-        url: item.url,
+        url: item,
         pet_id: petId,
       }
     })

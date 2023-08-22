@@ -27,6 +27,7 @@ describe('Get Info Pet (e2e)', () => {
         description: 'z.string()',
         independence: 'medium',
         anvironment: 'lugares pequenos',
+        requirements: 'cuidado',
         org_id: user.id,
       },
     })
@@ -40,6 +41,7 @@ describe('Get Info Pet (e2e)', () => {
         description: 'z.string()',
         independence: 'medium',
         anvironment: 'lugares pequenos',
+        requirements: 'cuidado',
         org_id: user.id,
       },
     })

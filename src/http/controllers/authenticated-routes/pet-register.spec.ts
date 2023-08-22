@@ -26,6 +26,7 @@ describe('Register Pet (e2e)', () => {
         age: 'adolescent',
         description: 'z.string()',
         independence: 'medium',
+        requirements: 'cuidado',
         anvironment: 'lugares pequenos',
       })
 

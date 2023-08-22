@@ -8,5 +8,5 @@ export async function authRoutes(app: FastifyInstance) {
 
   app.post('/pets', petRegister)
 
-  app.post('/upload', uploadRoute)
+  app.post('/upload/:id', uploadRoute)
 }

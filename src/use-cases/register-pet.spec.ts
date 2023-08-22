@@ -12,8 +12,6 @@ describe('Pets Register Use Case', () => {
     sut = new PetRegisterUseCase(inMemoryPetsRepository)
   })
   it('should be able to register pet', async () => {
-    const requirements = [{ title: 'wallison queime bastante' }]
-
     const { pet } = await sut.execute({
       data: {
         collar: '86781211',
@@ -25,15 +23,13 @@ describe('Pets Register Use Case', () => {
         independence: 'medium',
         anvironment: 'Lugares fechados',
         org_id: 'org_id',
+        requirements: 'carinho',
       },
-      requirements,
     })
 
     expect(pet.id).toEqual(expect.any(String))
   })
   it('should be able to register pet with same collar twice', async () => {
-    const requirements = [{ title: 'wallison queime bastante' }]
-
     await sut.execute({
       data: {
         collar: '86781211',
@@ -44,9 +40,9 @@ describe('Pets Register Use Case', () => {
         description: 'z.string()',
         independence: 'medium',
         anvironment: 'Lugares fechados',
+        requirements: 'carinho',
         org_id: 'org_id',
       },
-      requirements,
     })
 
     expect(async () => {
@@ -60,9 +56,9 @@ describe('Pets Register Use Case', () => {
           description: 'z.string()',
           independence: 'medium',
           anvironment: 'Lugares fechados',
+          requirements: 'carinho',
           org_id: 'org_id',
         },
-        requirements,
       })
     }).rejects.toBeInstanceOf(PetAlreadyExistsError)
   })

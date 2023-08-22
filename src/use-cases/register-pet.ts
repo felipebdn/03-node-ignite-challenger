@@ -15,9 +15,6 @@ interface PetRegisterUseCaseRequest {
     requirements: string
     org_id: string
   }
-  requirements: {
-    title: string
-  }[]
 }
 
 interface PetRegisterUseCaseResponse {

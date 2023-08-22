@@ -16,17 +16,13 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
   })
   const data = petBodySchema.parse(req.body)
 
-  const requirements = [{ title: 'teste' }]
   const petRegisterUseCase = makePetRegisterUseCase()
-  const pet = await petRegisterUseCase.execute({
+  await petRegisterUseCase.execute({
     data: {
       ...data,
       org_id: req.user.sub,
     },
-    requirements,
   })
-
-  console.log(pet)
 
   return res.status(201).send()
 }

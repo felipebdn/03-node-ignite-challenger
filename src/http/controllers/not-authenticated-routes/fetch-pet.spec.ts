@@ -29,6 +29,7 @@ describe('Fetch Pets (e2e)', () => {
           independence: 'medium',
           anvironment: 'lugares pequenos',
           org_id: user.id,
+          requirements: 'cuidado',
         },
         {
           collar: '2',
@@ -40,6 +41,7 @@ describe('Fetch Pets (e2e)', () => {
           independence: 'high',
           anvironment: 'lugares pequenos',
           org_id: user.id,
+          requirements: 'cuidado',
         },
       ],
     })
