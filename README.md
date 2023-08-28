@@ -1,4 +1,4 @@
-<!-- # 03-node-ignite-challenger -->
+# 03-node-ignite-challenger
 
 ### Regras da aplicação
 
