@@ -11,6 +11,9 @@ export async function orgRegister(req: FastifyRequest, res: FastifyReply) {
     state: z.string(),
     city: z.string(),
     cep: z.coerce.number(),
+    number: z.string(),
+    road: z.string(),
+    sector: z.string(),
     whatsapp: z.string(),
     password: z.string().min(6),
   })

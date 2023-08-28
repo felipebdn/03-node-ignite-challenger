@@ -10,6 +10,9 @@ interface OrgRegisterUseCaseRequest {
   state: string
   city: string
   cep: number
+  road: string
+  number: string
+  sector: string
   whatsapp: string
   password: string
 }
@@ -32,13 +35,27 @@ export class OrgRegisterUseCase {
 
     const password_hash = await hash(data.password, 6)
 
-    const { cep, city, email, name, organization, state, whatsapp } = data
+    const {
+      cep,
+      city,
+      email,
+      name,
+      sector,
+      organization,
+      state,
+      whatsapp,
+      number,
+      road,
+    } = data
 
     const org = await this.orgsRepository.create({
       cep,
       city,
       email,
       name,
+      number,
+      sector,
+      road,
       organization,
       password_hash,
       state,

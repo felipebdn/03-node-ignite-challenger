@@ -42,8 +42,11 @@ model Org {
   name          String
   organization  String
   email         String @unique
-  state         String
+  road          String
+  number        String
+  sector        String
   city          String
+  state         String
   cep           Int
   whatsapp      String @unique
   password_hash String
