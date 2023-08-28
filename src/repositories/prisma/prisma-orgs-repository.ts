@@ -5,6 +5,18 @@ import { prisma } from '@/lib/prisma'
 export class PrismaOrgsRepository implements OrgsRepository {
   async findById(id: string) {
     const org = await prisma.org.findUnique({
+      select: {
+        cep: true,
+        city: true,
+        id: true,
+        name: true,
+        organization: true,
+        road: true,
+        sector: true,
+        state: true,
+        number: true,
+        whatsapp: true,
+      },
       where: {
         id,
       },

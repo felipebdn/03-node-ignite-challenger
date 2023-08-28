@@ -1,4 +1,4 @@
-import { Pet, Image, Org } from '@prisma/client'
+import { Pet, Image } from '@prisma/client'
 import { ImagesRepository } from '@/repositories/images-repository'
 import { OrgsRepository } from '@/repositories/orgs-repository'
 import { PetsRespository } from '@/repositories/pets-repository'
@@ -6,7 +6,18 @@ import { PetsRespository } from '@/repositories/pets-repository'
 interface GetInfoPetUseCaseResponse {
   pet: Pet
   images: Image[]
-  org: Org
+  org: {
+    id: string
+    name: string
+    organization: string
+    road: string
+    number: string
+    sector: string
+    city: string
+    state: string
+    cep: number
+    whatsapp: string
+  }
 }
 
 export class GetInfoPetUseCase {
