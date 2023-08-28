@@ -3,6 +3,14 @@ import { OrgsRepository } from '../orgs-repository'
 import { randomUUID } from 'node:crypto'
 
 export class InMemoryOrgsRepository implements OrgsRepository {
+  async findById(id: string) {
+    const org = this.items.find((item) => item.id === id)
+    if (!org) {
+      return null
+    }
+    return org
+  }
+
   public items: Org[] = []
 
   async findByEmail(email: string) {

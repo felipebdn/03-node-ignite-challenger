@@ -2,21 +2,39 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
 import { GetInfoPetUseCase } from './get-info-pet'
 import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository'
+import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
+import { hash } from 'bcryptjs'
 
 let inMemoryPetsRepository: InMemoryPetsRepository
 let inMemoryImagesRepository: InMemoryImagesRepository
+let inMemoryOrgsRepository: InMemoryOrgsRepository
 let sut: GetInfoPetUseCase
 
 describe('Pets Get Info Pet Use Case', () => {
   beforeEach(async () => {
     inMemoryPetsRepository = new InMemoryPetsRepository()
     inMemoryImagesRepository = new InMemoryImagesRepository()
+    inMemoryOrgsRepository = new InMemoryOrgsRepository()
     sut = new GetInfoPetUseCase(
       inMemoryPetsRepository,
       inMemoryImagesRepository,
+      inMemoryOrgsRepository,
     )
   })
   it('should be able to get info of pet', async () => {
+    const org = await inMemoryOrgsRepository.create({
+      name: 'Felipe',
+      organization: 'Dev pet',
+      email: 'teste@example.com',
+      number: '1370',
+      road: 'nova prata',
+      sector: 'alto parana',
+      state: 'PA',
+      city: 'Redenção',
+      cep: 84874000,
+      whatsapp: '(94) 99148-7963',
+      password_hash: await hash('123456', 6),
+    })
     await inMemoryPetsRepository.create({
       collar: '2',
       name: 'Felipe',
@@ -26,7 +44,7 @@ describe('Pets Get Info Pet Use Case', () => {
       description: 'z.string()',
       independence: 'medium',
       anvironment: 'Lugares fechados',
-      org_id: 'org-01',
+      org_id: org.id,
       requirements: 'cuidado',
     })
     const { id } = await inMemoryPetsRepository.create({
@@ -38,7 +56,7 @@ describe('Pets Get Info Pet Use Case', () => {
       description: 'z.string()',
       independence: 'medium',
       anvironment: 'Lugares fechados',
-      org_id: 'org-01',
+      org_id: org.id,
       requirements: 'cuidado',
     })
 
@@ -54,7 +72,7 @@ describe('Pets Get Info Pet Use Case', () => {
       independence: 'medium',
       anvironment: 'Lugares fechados',
       requirements: 'cuidado',
-      org_id: 'org-01',
+      org_id: org.id,
       id: expect.any(String),
     })
   })
