@@ -40,7 +40,7 @@ export class PrismaOrgsRepository implements OrgsRepository {
         city: data.city,
         email: data.email,
         number: data.number,
-        road: data.number,
+        road: data.road,
         sector: data.sector,
         name: data.name,
         organization: data.organization,
