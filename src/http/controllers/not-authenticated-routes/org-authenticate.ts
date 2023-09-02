@@ -15,7 +15,14 @@ export async function orgAuthenticate(req: FastifyRequest, res: FastifyReply) {
     const orgAuthenticateUseCase = MakeOrgAuthenticateUseCase()
     const { org } = await orgAuthenticateUseCase.execute(data)
     const token = await res.jwtSign(
-      {},
+      {
+        city: org.city,
+        road: org.road,
+        sector: org.sector,
+        uf: org.state,
+        number: org.number,
+        name: org.name,
+      },
       {
         sign: {
           sub: org.id,
@@ -23,7 +30,14 @@ export async function orgAuthenticate(req: FastifyRequest, res: FastifyReply) {
       },
     )
     const refreshToken = await res.jwtSign(
-      {},
+      {
+        city: org.city,
+        road: org.road,
+        sector: org.sector,
+        uf: org.state,
+        number: org.number,
+        name: org.name,
+      },
       {
         sign: {
           sub: org.id,
