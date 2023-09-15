@@ -19,8 +19,7 @@ describe('Get Info Pet (e2e)', () => {
 
     await prisma.pet.create({
       data: {
-        collar: '1',
-        name: 'wallison',
+        name: 'wallison1',
         energy_level: 3,
         size: 'small',
         age: 'adolescent',
@@ -33,7 +32,6 @@ describe('Get Info Pet (e2e)', () => {
     })
     const pet = await prisma.pet.create({
       data: {
-        collar: '2',
         name: 'wallison',
         energy_level: 3,
         size: 'small',
@@ -51,7 +49,7 @@ describe('Get Info Pet (e2e)', () => {
     expect(res.statusCode).toEqual(200)
     expect(res.body.pet).toEqual(
       expect.objectContaining({
-        collar: '2',
+        name: 'wallison',
         id: pet.id,
       }),
     )

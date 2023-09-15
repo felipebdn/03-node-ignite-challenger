@@ -5,7 +5,6 @@ import { PetAlreadyExistsError } from '@/use-cases/errors/pet-already-exists-err
 
 export async function petRegister(req: FastifyRequest, res: FastifyReply) {
   const petBodySchema = z.object({
-    collar: z.string(),
     name: z.string(),
     energy_level: z.coerce.number().min(1).max(5),
     size: z.enum(['small', 'medium', 'big']),

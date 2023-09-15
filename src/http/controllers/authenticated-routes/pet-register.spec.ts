@@ -19,7 +19,6 @@ describe('Register Pet (e2e)', () => {
       .post('/pets')
       .set('Authorization', `Bearer ${token}`)
       .send({
-        collar: '1261',
         name: 'wallison',
         energy_level: 3,
         size: 'small',

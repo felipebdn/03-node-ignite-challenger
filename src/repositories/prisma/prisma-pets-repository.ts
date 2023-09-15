@@ -5,21 +5,11 @@ import { DataQueryFilterPets } from '@/lib/data-query-pets'
 import { z } from 'zod'
 
 export class PrismaPetsRepository implements PetsRespository {
-  async findByCollar(collar: string) {
-    const pet = await prisma.pet.findUnique({
-      where: {
-        collar,
-      },
-    })
-    return pet
-  }
-
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = await prisma.pet.create({
       data: {
         age: data.age,
         anvironment: data.anvironment,
-        collar: data.collar,
         description: data.description,
         energy_level: data.energy_level,
         independence: data.independence,

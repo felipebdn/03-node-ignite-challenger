@@ -6,19 +6,10 @@ import { DataQueryFilterPets } from '@/lib/data-query-pets'
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
 
-  async findByCollar(collar: string) {
-    const pet = this.items.find((item) => item.collar === collar)
-    if (!pet) {
-      return null
-    }
-    return pet
-  }
-
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet: Pet = {
       id: data.id ?? randomUUID(),
       age: data.age,
-      collar: data.collar,
       anvironment: data.anvironment,
       description: data.description,
       energy_level: data.energy_level,

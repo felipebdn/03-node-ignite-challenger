@@ -20,7 +20,6 @@ describe('Fetch Pets (e2e)', () => {
     await prisma.pet.createMany({
       data: [
         {
-          collar: '1',
           name: 'wallison',
           energy_level: 3,
           size: 'small',
@@ -32,7 +31,6 @@ describe('Fetch Pets (e2e)', () => {
           requirements: 'cuidado',
         },
         {
-          collar: '2',
           name: 'wallison',
           energy_level: 3,
           size: 'medium',
@@ -56,14 +54,6 @@ describe('Fetch Pets (e2e)', () => {
 
     expect(res.statusCode).toEqual(200)
     expect(res.body.pets).toHaveLength(2)
-    expect(res.body.pets).toEqual([
-      expect.objectContaining({
-        collar: '1',
-      }),
-      expect.objectContaining({
-        collar: '2',
-      }),
-    ])
 
     const res1 = await request(app.server)
       .get('/pets')
@@ -76,10 +66,5 @@ describe('Fetch Pets (e2e)', () => {
 
     expect(res1.statusCode).toEqual(200)
     expect(res1.body.pets).toHaveLength(1)
-    expect(res1.body.pets).toEqual([
-      expect.objectContaining({
-        collar: '2',
-      }),
-    ])
   })
 })

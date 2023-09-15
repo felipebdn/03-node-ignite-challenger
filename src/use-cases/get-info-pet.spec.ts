@@ -36,7 +36,6 @@ describe('Pets Get Info Pet Use Case', () => {
       password_hash: await hash('123456', 6),
     })
     await inMemoryPetsRepository.create({
-      collar: '2',
       name: 'Felipe',
       energy_level: 4,
       size: 'small',
@@ -48,7 +47,6 @@ describe('Pets Get Info Pet Use Case', () => {
       requirements: 'cuidado',
     })
     const { id } = await inMemoryPetsRepository.create({
-      collar: '1',
       name: 'Felipe',
       energy_level: 4,
       size: 'small',
@@ -63,7 +61,6 @@ describe('Pets Get Info Pet Use Case', () => {
     const data = await sut.execute(id)
 
     expect(data?.pet).toEqual({
-      collar: '1',
       name: 'Felipe',
       energy_level: 4,
       size: 'small',

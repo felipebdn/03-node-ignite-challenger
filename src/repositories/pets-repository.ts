@@ -10,7 +10,6 @@ export interface FindByAttributesProps {
 
 export interface PetsRespository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
-  findByCollar(collar: string): Promise<Pet | null>
   findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
   findById(id: string): Promise<Pet | null>
 }

@@ -1,7 +1,6 @@
 -- CreateTable
 CREATE TABLE "pets" (
     "id" TEXT NOT NULL,
-    "collar" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "energy_level" INTEGER NOT NULL,
     "size" TEXT NOT NULL,
@@ -41,9 +40,6 @@ CREATE TABLE "orgs" (
 
     CONSTRAINT "orgs_pkey" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "pets_collar_key" ON "pets"("collar");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "orgs_email_key" ON "orgs"("email");

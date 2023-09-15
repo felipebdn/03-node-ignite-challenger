@@ -77,7 +77,6 @@ describe('Pets Search Use Case', () => {
 
     // create pets from org_id_01
     await inMemoryPetsRepository.create({
-      collar: '1',
       name: 'Felipe',
       energy_level: 4,
       size: 'small',
@@ -89,7 +88,6 @@ describe('Pets Search Use Case', () => {
       requirements: 'cuidado',
     })
     await inMemoryPetsRepository.create({
-      collar: '2',
       name: 'Felipe',
       energy_level: 5,
       size: 'medium',
@@ -103,7 +101,6 @@ describe('Pets Search Use Case', () => {
 
     // create pets from org_id_02
     await inMemoryPetsRepository.create({
-      collar: '3',
       name: 'Felipe',
       energy_level: 4,
       size: 'small',
@@ -115,7 +112,6 @@ describe('Pets Search Use Case', () => {
       requirements: 'cuidado',
     })
     await inMemoryPetsRepository.create({
-      collar: '4',
       name: 'Felipe',
       energy_level: 5,
       size: 'medium',
@@ -135,7 +131,6 @@ describe('Pets Search Use Case', () => {
 
     expect(data?.pets).toEqual([
       expect.objectContaining({
-        collar: '4',
         name: 'Felipe',
         energy_level: 5,
         size: 'medium',

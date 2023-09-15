@@ -17,7 +17,6 @@ describe('Upload Images Use Case', () => {
     const inMemoryPetsRepository = new InMemoryPetsRepository()
 
     const pet = await inMemoryPetsRepository.create({
-      collar: '86781211',
       name: 'Felipe',
       energy_level: 5,
       size: 'medium',
