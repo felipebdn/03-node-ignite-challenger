@@ -12,7 +12,7 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     description: z.string(),
     independence: z.enum(['low', 'medium', 'high']),
     anvironment: z.string(),
-    requirements: z.string(),
+    requirements: z.string().optional(),
   })
   const data = petBodySchema.parse(req.body)
 
