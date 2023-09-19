@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makeSearchPetsUseCase } from '@/use-cases/factories/make-search-pets-use-case'
 import { z } from 'zod'
+import { makeSearchPetsUseCase } from '@/use-cases/factories/make-search-pets-use-case'
 
 export async function FetchPets(req: FastifyRequest, res: FastifyReply) {
   const queryParamsSchema = z.object({
