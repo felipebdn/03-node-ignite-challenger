@@ -17,15 +17,26 @@ export async function uploadRoute(req: FastifyRequest, res: FastifyReply) {
   const upload = await req.file({
     limits: { fileSize: 5_242_880 },
   })
+
   if (!upload) {
     return res.status(400).send()
+  }
+
+  try {
+    await upload.toBuffer()
+  } catch (err) {
+    return res.status(400).send({
+      message: 'Exceeded size limit',
+    })
   }
 
   const mimeTypeRegex = /^(image|video)\/[a-zA-Z]+/
   const isValidFileFormat = mimeTypeRegex.test(upload.mimetype)
 
   if (!isValidFileFormat) {
-    return res.status(400).send()
+    return res.status(400).send({
+      message: 'Format invalid',
+    })
   }
 
   const fileId = randomUUID()
@@ -46,8 +57,6 @@ export async function uploadRoute(req: FastifyRequest, res: FastifyReply) {
   const makeUploadImagesUseCase = MakeUploadImagesUseCase()
 
   const urlImage = env.AWS_URL_IMAGE.concat('/', fileName)
-
-  console.log(urlImage)
 
   makeUploadImagesUseCase.execute({
     petId: id,
