@@ -5,13 +5,13 @@ import { PetAlreadyExistsError } from '@/use-cases/errors/pet-already-exists-err
 
 export async function petRegister(req: FastifyRequest, res: FastifyReply) {
   const petBodySchema = z.object({
-    name: z.string(),
+    name: z.string().nonempty('None empty'),
     energy_level: z.coerce.number().min(1).max(5),
     size: z.enum(['small', 'medium', 'big']),
     age: z.enum(['cub', 'adolescent', 'elderly']),
-    description: z.string(),
+    description: z.string().nonempty('None empty'),
     independence: z.enum(['low', 'medium', 'high']),
-    anvironment: z.string(),
+    anvironment: z.string().nonempty('None empty'),
     requirements: z.string().optional(),
   })
   const data = petBodySchema.parse(req.body)
