@@ -17,12 +17,12 @@ describe('Refresh Token (e2e)', () => {
       organization: 'teste 1',
       email: 'teste@example.com',
       state: 'PA',
-      number: '1370',
+      number: 1370,
       road: 'nova prata',
       sector: 'alto parana',
       city: 'Conceição do Araguaia',
-      cep: '84874000',
-      whatsapp: '(94) 99148-7963',
+      cep: 84874000,
+      whatsapp: 94991487963,
       password: '123456',
     })
 

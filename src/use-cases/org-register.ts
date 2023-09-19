@@ -2,6 +2,7 @@ import { OrgsRepository } from '@/repositories/orgs-repository'
 import { hash } from 'bcryptjs'
 import { OrgAlreadyExistsError } from './errors/org-already-exists-error'
 import { Org } from '@prisma/client'
+import { OrgAlreadyUsingWhatsappError } from './errors/org-already-using-whatsapp'
 
 interface OrgRegisterUseCaseRequest {
   name: string
@@ -28,9 +29,16 @@ export class OrgRegisterUseCase {
     data: OrgRegisterUseCaseRequest,
   ): Promise<OrgRegisterUseCaseResponse> {
     const orgWithSameEmail = await this.orgsRepository.findByEmail(data.email)
+    const orgWithSameWhatsapp = await this.orgsRepository.findByWhatsapp(
+      data.whatsapp,
+    )
 
     if (orgWithSameEmail) {
       throw new OrgAlreadyExistsError()
+    }
+
+    if (orgWithSameWhatsapp) {
+      throw new OrgAlreadyUsingWhatsappError()
     }
 
     const password_hash = await hash(data.password, 6)

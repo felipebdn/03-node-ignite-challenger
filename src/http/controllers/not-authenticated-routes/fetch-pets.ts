@@ -4,8 +4,11 @@ import { z } from 'zod'
 
 export async function FetchPets(req: FastifyRequest, res: FastifyReply) {
   const queryParamsSchema = z.object({
-    state: z.string().length(2),
-    city: z.string(),
+    state: z
+      .string()
+      .toUpperCase()
+      .length(2, 'State field receives the state acronym.'),
+    city: z.string().nonempty('None empty'),
     age: z.enum(['cub', 'adolescent', 'elderly']).optional(),
     energy_level: z.coerce.number().min(1).max(5).optional(),
     size: z.enum(['small', 'medium', 'big']).optional(),

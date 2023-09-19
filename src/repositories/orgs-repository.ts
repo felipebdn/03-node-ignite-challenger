@@ -15,6 +15,7 @@ type findById = {
 
 export interface OrgsRepository {
   findByEmail(email: string): Promise<Org | null>
+  findByWhatsapp(whatsapp: string): Promise<Org | null>
   findById(id: string): Promise<findById | null>
   create(data: Prisma.OrgCreateInput): Promise<Org>
   findByStateAndCidy(state: string, city: string): Promise<Org[] | null>

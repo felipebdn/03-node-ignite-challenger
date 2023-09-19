@@ -16,13 +16,13 @@ describe('Authenticate Org (e2e)', () => {
       name: 'Felipe 1',
       organization: 'teste 1',
       email: 'teste@example.com',
-      number: '1370',
+      number: 1370,
       road: 'nova prata',
       sector: 'alto parana',
       state: 'PA',
       city: 'Conceição do Araguaia',
-      cep: '84874000',
-      whatsapp: '(94) 99148-7963',
+      cep: 84874000,
+      whatsapp: 94991487963,
       password: '123456',
     })
 
