@@ -1,8 +1,8 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import request from 'supertest'
-import { createAndAuthenticateOrg } from '@/utils/test/create-and-authenticate-org'
 import { prisma } from '@/lib/prisma'
 import { app } from '@/app'
+import { createAndAuthenticateOrg } from 'test/utils/create-and-authenticate-org'
 
 describe('Fetch Pets (e2e)', () => {
   beforeAll(async () => {
