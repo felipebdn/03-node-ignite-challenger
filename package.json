@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup src -d build --watch --onSuccess 'tsx dist/index.ts'",
+    "build": "tsup src -d build",
     "start": "node build/server.js",
     "test:create-prisma-environment": "cd prisma/vitest-environment-prisma && yarn link",
     "test:install-prisma-environment": "yarn link vitest-environment-prisma",
