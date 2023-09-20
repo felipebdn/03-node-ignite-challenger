@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { PetRegisterUseCase } from './register-pet'
+import { PetRegisterUseCase } from '@/use-cases/register-pet'
 
 let inMemoryPetsRepository: InMemoryPetsRepository
 let sut: PetRegisterUseCase

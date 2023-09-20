@@ -1,7 +1,7 @@
 import { beforeEach, describe, it } from 'vitest'
-import { UploadImagesUseCase } from './upload-images'
 import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
+import { UploadImagesUseCase } from '@/use-cases/upload-images'
 
 let inMemoryImagesRepository: InMemoryImagesRepository
 let sut: UploadImagesUseCase

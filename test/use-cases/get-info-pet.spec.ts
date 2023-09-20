@@ -1,9 +1,9 @@
-import { beforeEach, describe, expect, it } from 'vitest'
-import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { GetInfoPetUseCase } from './get-info-pet'
 import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
+import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
+import { GetInfoPetUseCase } from '@/use-cases/get-info-pet'
 import { hash } from 'bcryptjs'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 let inMemoryPetsRepository: InMemoryPetsRepository
 let inMemoryImagesRepository: InMemoryImagesRepository
