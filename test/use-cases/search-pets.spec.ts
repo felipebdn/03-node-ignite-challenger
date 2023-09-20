@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { hash } from 'bcryptjs'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
-import { FetchPetsAroundCityUseCase } from './search-pets'
+import { FetchPetsAroundCityUseCase } from '@/use-cases/search-pets'
 
 let inMemoryOrgsRepository: InMemoryOrgsRepository
 let inMemoryPetsRepository: InMemoryPetsRepository

@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { OrgRegisterUseCase } from './org-register'
 import { compare } from 'bcryptjs'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
-import { OrgAlreadyExistsError } from './errors/org-already-exists-error'
+import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists-error'
+import { OrgRegisterUseCase } from '@/use-cases/org-register'
 
 let inMemoryOrgsRepository: InMemoryOrgsRepository
 let sut: OrgRegisterUseCase
