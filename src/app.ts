@@ -2,13 +2,48 @@ import fastify from 'fastify'
 import { ZodError } from 'zod'
 import jwt from '@fastify/jwt'
 import fastifyCookie from '@fastify/cookie'
+import Swagger from '@fastify/swagger'
+import SwaggerUI from '@fastify/swagger-ui'
 import multipart from '@fastify/multipart'
 import cors from '@fastify/cors'
-import { env } from './env'
 import { authRoutes } from './http/controllers/authenticated-routes/routes'
 import { notAuthRoutes } from './http/controllers/not-authenticated-routes/routes'
+import { env } from './env'
 
 export const app = fastify()
+
+app.register(Swagger, {
+  openapi: {
+    info: {
+      title: 'Find a Friend API',
+      version: '0.1.0',
+      termsOfService: '/terms',
+      contact: {
+        email: 'dfelipebdn@gmail.com',
+      },
+    },
+    servers: [
+      {
+        url: 'http://localhost:3333',
+        description: 'API de teste',
+      },
+      {
+        url: 'https://node-ignite-chellenger-03.onrender.com',
+        description: 'API de produção',
+      },
+    ],
+  },
+})
+
+app.register(SwaggerUI, {
+  routePrefix: '/docs',
+})
+
+app.get('/terms', () => {
+  return JSON.stringify({
+    message: 'termos e serviços',
+  })
+})
 
 app.register(multipart)
 
