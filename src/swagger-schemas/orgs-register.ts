@@ -7,6 +7,18 @@ export const orgsRegisterSchema: RouteShorthandOptions = {
     tags: ['Orgs'],
     body: {
       type: 'object',
+      required: [
+        'name',
+        'organization',
+        'email',
+        'state',
+        'city',
+        'cep',
+        'road',
+        'sector',
+        'whatsapp',
+        'password',
+      ],
       properties: {
         name: { type: 'string' },
         organization: { type: 'string' },
@@ -29,8 +41,8 @@ export const orgsRegisterSchema: RouteShorthandOptions = {
     },
     response: {
       201: {
-        description: 'Successful response',
-        type: 'object',
+        description: 'Organização registrada com sucesso',
+        type: 'null',
       },
       409: {
         description: 'Org already exists',

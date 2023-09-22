@@ -29,8 +29,8 @@ export const petRegisterSchema: RouteShorthandOptions = {
     },
     response: {
       201: {
-        description: 'Successful response',
-        type: 'object',
+        description: 'Pet registrado com sucesso.',
+        type: 'null',
       },
       401: {
         description: 'Unauthorized',
@@ -47,6 +47,5 @@ export const petRegisterSchema: RouteShorthandOptions = {
         },
       },
     },
-    security: [{}],
   },
 }

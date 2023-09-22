@@ -1,3 +1,4 @@
+'use strict'
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import jwt from '@fastify/jwt'
@@ -32,6 +33,15 @@ app.register(Swagger, {
         description: 'API de produção',
       },
     ],
+    components: {
+      securitySchemes: {
+        apiKey: {
+          type: 'apiKey',
+          name: 'apiKey',
+          in: 'header',
+        },
+      },
+    },
   },
 })
 
