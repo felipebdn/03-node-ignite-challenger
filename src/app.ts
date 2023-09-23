@@ -35,7 +35,7 @@ app.register(Swagger, {
     ],
     components: {
       securitySchemes: {
-        apiKey: {
+        http: {
           type: 'apiKey',
           name: 'apiKey',
           in: 'header',
