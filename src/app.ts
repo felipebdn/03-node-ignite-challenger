@@ -36,11 +36,16 @@ app.register(Swagger, {
     components: {
       securitySchemes: {
         http: {
-          type: 'apiKey',
-          name: 'apiKey',
-          in: 'header',
+          type: 'http',
+          description: 'Use o JWT que pode ser obtido no na rota /authenticate',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
       },
+    },
+    externalDocs: {
+      description: 'Find more info here',
+      url: 'https://swagger.io',
     },
   },
 })

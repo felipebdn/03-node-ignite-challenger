@@ -27,7 +27,7 @@ export const petRegisterSchema: RouteShorthandOptions = {
         requirements: { type: 'string' },
       },
     },
-    security: [{ apiKey: [] }],
+    security: [{ http: [] }],
     response: {
       201: {
         description: 'Pet registrado com sucesso.',
