@@ -10,12 +10,14 @@ export class InMemoryImagesRepository implements ImagesRepository {
   }
 
   async create(url: string, petId: string, key: string) {
-    this.imagesPet.push({
+    const image = {
       id: randomUUID(),
       pet_id: petId,
       url,
       key,
-    })
+    }
+    this.imagesPet.push(image)
+    return image
   }
 
   async findManyByPetId(id: string) {

@@ -11,13 +11,14 @@ export class PrismaImagesRepository implements ImagesRepository {
   }
 
   async create(url: string, petId: string, key: string) {
-    await prisma.image.create({
+    const image = await prisma.image.create({
       data: {
         key,
         url,
         pet_id: petId,
       },
     })
+    return image
   }
 
   async findManyByPetId(id: string) {
