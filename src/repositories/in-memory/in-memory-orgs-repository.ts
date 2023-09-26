@@ -50,7 +50,9 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     if (!org) {
       return null
     }
-    return org
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password_hash: _, ...data } = org
+    return data
   }
 
   async findByEmail(email: string) {
