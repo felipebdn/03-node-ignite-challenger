@@ -1,31 +1,28 @@
+import { InMemoryImagesRepository } from '@/repositories/in-memory/in-memory-images-repository'
+import { DeleteImageUseCase } from '@/use-cases/delete-image'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { DeletePetUseCase } from '@/use-cases/delete-pet'
 
-let inMemoryPetsRepository: InMemoryPetsRepository
-let sut: DeletePetUseCase
+let inMemoryImagesRepository: InMemoryImagesRepository
+let sut: DeleteImageUseCase
 
-describe('Delete Pet Use Case', () => {
-  beforeEach(() => {
-    inMemoryPetsRepository = new InMemoryPetsRepository()
-    sut = new DeletePetUseCase(inMemoryPetsRepository)
+describe('Delete Image Pet Use Case', () => {
+  beforeEach(async () => {
+    inMemoryImagesRepository = new InMemoryImagesRepository()
+    sut = new DeleteImageUseCase(inMemoryImagesRepository)
   })
-  it('should be able to register pet', async () => {
-    const createPet = await inMemoryPetsRepository.create({
-      name: 'Felipe',
-      energy_level: 5,
-      size: 'medium',
-      age: 'adolescent',
-      description: 'z.string()',
-      independence: 'medium',
-      environment: 'Lugares fechados',
-      org_id: 'org_id',
-      requirements: 'carinho',
-    })
-    await sut.execute(createPet.id)
+  it('should be able to delete image of pet', async () => {
+    const image = await inMemoryImagesRepository.create(
+      'imageurl',
+      'idpet',
+      'imagekey',
+    )
+    await sut.execute(image.key)
 
-    const fetchPet = await inMemoryPetsRepository.findById(createPet.id)
+    const findImage = await inMemoryImagesRepository.findManyByPetId(
+      image.pet_id,
+    )
+    console.log(findImage)
 
-    expect(fetchPet).toEqual(null)
+    expect(findImage.length).toEqual(0)
   })
 })
