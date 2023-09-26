@@ -1,7 +1,7 @@
 import { env } from '@/env'
 import { s3 } from '@/lib/s3'
 import { MakeUploadImagesUseCase } from '@/use-cases/factories/make-upload-images-use-case'
-import { PutObjectCommand } from '@aws-sdk/client-s3'
+import { PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3'
 import { randomUUID } from 'crypto'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { extname } from 'path'
@@ -60,7 +60,8 @@ export async function uploadRoute(req: FastifyRequest, res: FastifyReply) {
 
   makeUploadImagesUseCase.execute({
     petId: id,
-    url: [urlImage],
+    url: urlImage,
+    key: fileName,
   })
 
   return { ok: true }

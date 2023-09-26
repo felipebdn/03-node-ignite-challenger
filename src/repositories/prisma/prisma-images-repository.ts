@@ -2,15 +2,21 @@ import { prisma } from '@/lib/prisma'
 import { ImagesRepository } from '../images-repository'
 
 export class PrismaImagesRepository implements ImagesRepository {
-  async create(url: string[], petId: string) {
-    const newDate = url.map((item) => {
-      return {
-        url: item,
-        pet_id: petId,
-      }
+  async delete(key: string): Promise<void> {
+    await prisma.image.delete({
+      where: {
+        key,
+      },
     })
-    await prisma.image.createMany({
-      data: newDate,
+  }
+
+  async create(url: string, petId: string, key: string) {
+    await prisma.image.create({
+      data: {
+        key,
+        url,
+        pet_id: petId,
+      },
     })
   }
 

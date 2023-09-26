@@ -4,13 +4,17 @@ import { randomUUID } from 'crypto'
 
 export class InMemoryImagesRepository implements ImagesRepository {
   public imagesPet: Image[] = []
-  async create(url: string[], petId: string) {
-    url.map((image) => {
-      return this.imagesPet.push({
-        id: randomUUID(),
-        pet_id: petId,
-        url: image,
-      })
+
+  async delete(key: string): Promise<void> {
+    this.imagesPet = this.imagesPet.filter((item) => item.url !== key)
+  }
+
+  async create(url: string, petId: string, key: string) {
+    this.imagesPet.push({
+      id: randomUUID(),
+      pet_id: petId,
+      url,
+      key,
     })
   }
 

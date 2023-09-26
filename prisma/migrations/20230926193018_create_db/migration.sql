@@ -18,6 +18,7 @@ CREATE TABLE "pets" (
 CREATE TABLE "images" (
     "id" TEXT NOT NULL,
     "url" TEXT NOT NULL,
+    "key" TEXT NOT NULL,
     "pet_id" TEXT NOT NULL,
 
     CONSTRAINT "images_pkey" PRIMARY KEY ("id")
@@ -40,6 +41,9 @@ CREATE TABLE "orgs" (
 
     CONSTRAINT "orgs_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "images_key_key" ON "images"("key");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "orgs_email_key" ON "orgs"("email");
