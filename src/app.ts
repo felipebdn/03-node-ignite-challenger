@@ -10,11 +10,8 @@ import cors from '@fastify/cors'
 import { authRoutes } from './http/controllers/authenticated-routes/routes'
 import { notAuthRoutes } from './http/controllers/not-authenticated-routes/routes'
 import { env } from './env'
-import { validatorCompiler } from './lib/validador-compiler'
 
 export const app = fastify()
-
-app.setValidatorCompiler(validatorCompiler)
 
 app.register(Swagger, {
   openapi: {
