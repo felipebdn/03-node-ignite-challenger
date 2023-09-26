@@ -3,6 +3,16 @@ import { OrgsRepository } from '../orgs-repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaOrgsRepository implements OrgsRepository {
+  async updateOrg(data: Prisma.OrgCreateInput, id: string) {
+    const org = await prisma.org.update({
+      where: {
+        id,
+      },
+      data,
+    })
+    return org
+  }
+
   async findByWhatsapp(whatsapp: string) {
     const org = await prisma.org.findUnique({
       where: {

@@ -4,16 +4,16 @@ import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-
 import { OrgInvalidCredentialError } from '@/use-cases/errors/org-invalid-credentials-error'
 import { OrgAuthenticateUseCase } from '@/use-cases/org-authenticate'
 
-let orgsRepository: InMemoryOrgsRepository
+let inMemoryOrgsRepository: InMemoryOrgsRepository
 let sut: OrgAuthenticateUseCase
 
 describe('Orgs Authenticate Use Case', () => {
   beforeEach(() => {
-    orgsRepository = new InMemoryOrgsRepository()
-    sut = new OrgAuthenticateUseCase(orgsRepository)
+    inMemoryOrgsRepository = new InMemoryOrgsRepository()
+    sut = new OrgAuthenticateUseCase(inMemoryOrgsRepository)
   })
   it('should be able to authenticate', async () => {
-    await orgsRepository.create({
+    await inMemoryOrgsRepository.create({
       name: 'Felipe',
       organization: 'Dev pet',
       email: 'teste@example.com',
@@ -44,7 +44,7 @@ describe('Orgs Authenticate Use Case', () => {
     ).rejects.toBeInstanceOf(OrgInvalidCredentialError)
   })
   it('should not be able to authenticate with wrong password', async () => {
-    await orgsRepository.create({
+    await inMemoryOrgsRepository.create({
       name: 'Felipe',
       organization: 'Dev pet',
       email: 'teste@example.com',

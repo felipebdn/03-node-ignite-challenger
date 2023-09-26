@@ -5,6 +5,38 @@ import { randomUUID } from 'node:crypto'
 export class InMemoryOrgsRepository implements OrgsRepository {
   public items: Org[] = []
 
+  async updateOrg(data: {
+    id: string
+    name: string
+    email: string
+    organization: string
+    road: string
+    number: string
+    sector: string
+    city: string
+    state: string
+    cep: number
+    whatsapp: string
+  }) {
+    const currentIndex = this.items.findIndex((item) => item.id === data.id)
+
+    this.items[currentIndex] = {
+      id: this.items[currentIndex].id,
+      name: data.name,
+      organization: data.organization,
+      email: data.email,
+      state: data.state,
+      number: data.number,
+      road: data.road,
+      sector: data.sector,
+      city: data.city,
+      cep: data.cep,
+      whatsapp: data.whatsapp,
+      password_hash: this.items[currentIndex].password_hash,
+    }
+    return this.items[currentIndex]
+  }
+
   async findByWhatsapp(whatsapp: string) {
     const org = this.items.find((item) => item.whatsapp === whatsapp)
     if (!org) {

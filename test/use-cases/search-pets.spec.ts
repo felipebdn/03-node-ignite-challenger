@@ -47,7 +47,6 @@ describe('Pets Search Use Case', () => {
     })
   })
   it('should be able to search pets', async () => {
-    // create org
     const org_id_01 = await inMemoryOrgsRepository.create({
       name: 'Felipe 1',
       organization: 'teste 1',
@@ -75,7 +74,6 @@ describe('Pets Search Use Case', () => {
       password_hash: await hash('123456', 6),
     })
 
-    // create pets from org_id_01
     await inMemoryPetsRepository.create({
       name: 'Felipe',
       energy_level: 4,
@@ -99,7 +97,6 @@ describe('Pets Search Use Case', () => {
       requirements: 'cuidado',
     })
 
-    // create pets from org_id_02
     await inMemoryPetsRepository.create({
       name: 'Felipe',
       energy_level: 4,
