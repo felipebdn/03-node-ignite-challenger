@@ -24,4 +24,5 @@ export interface PetsRespository {
   findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
   findById(id: string): Promise<Pet | null>
   update(data: PetWithOutIdAndOrgId, id: string): Promise<Pet>
+  delete(id: string): Promise<void>
 }

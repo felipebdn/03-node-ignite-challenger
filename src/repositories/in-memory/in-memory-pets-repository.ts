@@ -6,6 +6,12 @@ import { DataQueryFilterPets } from '@/lib/data-query-pets'
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
 
+  async delete(id: string) {
+    const filterWithOutPetFromId = this.items.filter((item) => item.id !== id)
+
+    this.items = filterWithOutPetFromId
+  }
+
   async update(
     data: {
       name: string
