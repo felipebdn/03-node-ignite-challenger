@@ -42,7 +42,7 @@ describe('Pets Get Info Pet Use Case', () => {
       age: 'adolescent',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       org_id: org.id,
       requirements: 'cuidado',
     })
@@ -53,7 +53,7 @@ describe('Pets Get Info Pet Use Case', () => {
       age: 'adolescent',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       org_id: org.id,
       requirements: 'cuidado',
     })
@@ -67,7 +67,7 @@ describe('Pets Get Info Pet Use Case', () => {
       age: 'adolescent',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       requirements: 'cuidado',
       org_id: org.id,
       id: expect.any(String),

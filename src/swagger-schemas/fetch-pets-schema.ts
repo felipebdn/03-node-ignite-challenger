@@ -46,7 +46,7 @@ export const fetchPetsSchema: RouteShorthandOptions = {
               description: { type: 'string' },
               requirements: { type: 'string' },
               independence: { type: 'string' },
-              anvironment: { type: 'string' },
+              environment: { type: 'string' },
               org_id: { type: 'string' },
             },
           },

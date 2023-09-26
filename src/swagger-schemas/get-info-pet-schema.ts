@@ -27,7 +27,7 @@ export const getInfoPetSchema: RouteShorthandOptions = {
               description: { type: 'string' },
               requirements: { type: 'string' },
               independence: { type: 'string' },
-              anvironment: { type: 'string' },
+              environment: { type: 'string' },
               org_id: { type: 'string' },
             },
           },

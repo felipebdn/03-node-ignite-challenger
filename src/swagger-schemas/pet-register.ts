@@ -14,7 +14,7 @@ export const petRegisterSchema: RouteShorthandOptions = {
         'age',
         'description',
         'independence',
-        'anvironment',
+        'environment',
       ],
       properties: {
         name: { type: 'string' },
@@ -23,7 +23,7 @@ export const petRegisterSchema: RouteShorthandOptions = {
         age: { type: 'string' },
         description: { type: 'string' },
         independence: { type: 'string' },
-        anvironment: { type: 'string' },
+        environment: { type: 'string' },
         requirements: { type: 'string' },
       },
     },

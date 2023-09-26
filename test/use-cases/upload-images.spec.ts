@@ -23,7 +23,7 @@ describe('Upload Images Use Case', () => {
       age: 'adolescent',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       org_id: 'org_id',
       requirements: 'carinho',
     })

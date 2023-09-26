@@ -81,7 +81,7 @@ describe('Pets Search Use Case', () => {
       age: 'adolescent',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       org_id: org_id_01.id,
       requirements: 'cuidado',
     })
@@ -92,7 +92,7 @@ describe('Pets Search Use Case', () => {
       age: 'cub',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       org_id: org_id_01.id,
       requirements: 'cuidado',
     })
@@ -104,7 +104,7 @@ describe('Pets Search Use Case', () => {
       age: 'adolescent',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       org_id: org_id_02.id,
       requirements: 'cuidado',
     })
@@ -115,7 +115,7 @@ describe('Pets Search Use Case', () => {
       age: 'cub',
       description: 'z.string()',
       independence: 'medium',
-      anvironment: 'Lugares fechados',
+      environment: 'Lugares fechados',
       org_id: org_id_02.id,
       requirements: 'cuidado',
     })
@@ -134,7 +134,7 @@ describe('Pets Search Use Case', () => {
         age: 'cub',
         description: 'z.string()',
         independence: 'medium',
-        anvironment: 'Lugares fechados',
+        environment: 'Lugares fechados',
         org_id: expect.any(String),
       }),
     ])

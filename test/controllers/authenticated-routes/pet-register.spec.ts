@@ -26,7 +26,7 @@ describe('Register Pet (e2e)', () => {
         description: 'z.string()',
         independence: 'medium',
         requirements: 'cuidado',
-        anvironment: 'lugares pequenos',
+        environment: 'lugares pequenos',
       })
 
     expect(response.statusCode).toEqual(201)

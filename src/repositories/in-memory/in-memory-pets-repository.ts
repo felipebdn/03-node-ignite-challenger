@@ -6,11 +6,42 @@ import { DataQueryFilterPets } from '@/lib/data-query-pets'
 export class InMemoryPetsRepository implements PetsRespository {
   public items: Pet[] = []
 
+  async update(
+    data: {
+      name: string
+      energy_level: number
+      size: string
+      age: string
+      description: string
+      requirements: string
+      independence: string
+      environment: string
+    },
+    id: string,
+  ) {
+    const findIndexPetById = this.items.findIndex((item) => item.id === id)
+
+    this.items[findIndexPetById] = {
+      age: data.age,
+      environment: data.environment,
+      description: data.description,
+      energy_level: data.energy_level,
+      id: this.items[findIndexPetById].id,
+      independence: data.independence,
+      name: data.name,
+      org_id: this.items[findIndexPetById].org_id,
+      requirements: data.requirements,
+      size: data.size,
+    }
+
+    return this.items[findIndexPetById]
+  }
+
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet: Pet = {
       id: data.id ?? randomUUID(),
       age: data.age,
-      anvironment: data.anvironment,
+      environment: data.environment,
       description: data.description,
       energy_level: data.energy_level,
       independence: data.independence,

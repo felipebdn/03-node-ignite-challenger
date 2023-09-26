@@ -9,7 +9,7 @@ export class PrismaPetsRepository implements PetsRespository {
     const pet = await prisma.pet.create({
       data: {
         age: data.age,
-        anvironment: data.anvironment,
+        environment: data.environment,
         description: data.description,
         energy_level: data.energy_level,
         independence: data.independence,

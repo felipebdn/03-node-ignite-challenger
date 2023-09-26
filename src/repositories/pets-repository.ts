@@ -8,8 +8,20 @@ export interface FindByAttributesProps {
   independence?: 'low' | 'medium' | 'high'
 }
 
+type PetWithOutIdAndOrgId = {
+  name: string
+  energy_level: number
+  size: string
+  age: string
+  description: string
+  requirements: string
+  independence: string
+  environment: string
+}
+
 export interface PetsRespository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
   findByFilter(data: FindByAttributesProps): Promise<Pet[] | null>
   findById(id: string): Promise<Pet | null>
+  update(data: PetWithOutIdAndOrgId, id: string): Promise<Pet>
 }

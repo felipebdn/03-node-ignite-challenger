@@ -11,7 +11,7 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     age: z.enum(['cub', 'adolescent', 'elderly']),
     description: z.string().nonempty('None empty'),
     independence: z.enum(['low', 'medium', 'high']),
-    anvironment: z.string().nonempty('None empty'),
+    environment: z.string().nonempty('None empty'),
     requirements: z.string().optional(),
   })
   const data = petBodySchema.parse(req.body)

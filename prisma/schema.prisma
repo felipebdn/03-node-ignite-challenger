@@ -16,7 +16,7 @@ model Pet {
   description  String
   requirements String
   independence String
-  anvironment  String
+  environment  String
 
   org    Org    @relation(fields: [org_id], references: [id])
   org_id String

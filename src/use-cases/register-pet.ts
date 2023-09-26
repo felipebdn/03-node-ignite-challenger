@@ -9,7 +9,7 @@ interface PetRegisterUseCaseRequest {
     age: 'cub' | 'adolescent' | 'elderly'
     description: string
     independence: 'low' | 'medium' | 'high'
-    anvironment: string
+    environment: string
     requirements?: string
     org_id: string
   }

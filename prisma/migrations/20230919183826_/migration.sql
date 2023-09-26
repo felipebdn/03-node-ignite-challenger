@@ -8,7 +8,7 @@ CREATE TABLE "pets" (
     "description" TEXT NOT NULL,
     "requirements" TEXT NOT NULL,
     "independence" TEXT NOT NULL,
-    "anvironment" TEXT NOT NULL,
+    "environment" TEXT NOT NULL,
     "org_id" TEXT NOT NULL,
 
     CONSTRAINT "pets_pkey" PRIMARY KEY ("id")
