@@ -37,7 +37,7 @@ app.register(Swagger, {
       securitySchemes: {
         http: {
           type: 'http',
-          description: 'Use o JWT que pode ser obtido no na rota /authenticate',
+          description: 'Use o JWT que pode ser obtido no na rota /sessions',
           scheme: 'bearer',
           bearerFormat: 'JWT',
         },

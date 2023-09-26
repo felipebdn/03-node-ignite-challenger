@@ -31,15 +31,25 @@ export const fetchPetsSchema: RouteShorthandOptions = {
       },
     },
     response: {
-      201: {
-        description: 'Organização registrada com sucesso',
-        type: 'null',
-      },
-      409: {
-        description: 'Org already exists',
+      200: {
+        description: 'Succesful response',
         type: 'object',
         properties: {
-          message: { type: 'string' },
+          pets: {
+            type: 'array',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              energy_level: { type: 'number' },
+              size: { type: 'string' },
+              age: { type: 'string' },
+              description: { type: 'string' },
+              requirements: { type: 'string' },
+              independence: { type: 'string' },
+              anvironment: { type: 'string' },
+              org_id: { type: 'string' },
+            },
+          },
         },
       },
     },

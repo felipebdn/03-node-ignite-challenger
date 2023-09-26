@@ -5,7 +5,7 @@ export const getInfoPetSchema: RouteShorthandOptions = {
     description: 'Essa rota é responsável mostrar as informações de um pet',
     summary: 'Bunscar Pet',
     tags: ['Pets'],
-    querystring: {
+    params: {
       type: 'object',
       required: ['id'],
       properties: {
@@ -33,9 +33,11 @@ export const getInfoPetSchema: RouteShorthandOptions = {
           },
           images: {
             type: 'array',
-            id: { type: 'string' },
-            url: { type: 'string' },
-            pet_id: { type: 'string' },
+            properties: {
+              id: { type: 'string' },
+              url: { type: 'string' },
+              pet_id: { type: 'string' },
+            },
           },
 
           org: {
