@@ -3,7 +3,7 @@ import { Image } from '@prisma/client'
 
 interface UploadImagesUseCaseRequest {
   url: string
-  petId: string
+  pet_id: string
   key: string
 }
 
@@ -15,11 +15,11 @@ export class UploadImagesUseCase {
   constructor(private imagesRepository: ImagesRepository) {}
 
   async execute({
-    petId,
+    pet_id,
     url,
     key,
   }: UploadImagesUseCaseRequest): Promise<PetRegisterUseCaseResponse> {
-    const image = await this.imagesRepository.create(url, petId, key)
+    const image = await this.imagesRepository.create({ url, pet_id, key })
     return { image }
   }
 }
