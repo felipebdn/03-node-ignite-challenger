@@ -1,12 +1,12 @@
 import { Prisma } from '@prisma/client'
-import { OrgsRepository } from '../orgs-repository'
+import { OrgsRepository, orgWithOutPasswordHash } from '../orgs-repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaOrgsRepository implements OrgsRepository {
-  async updateOrg(data: Prisma.OrgCreateInput, id: string) {
+  async updateOrg(data: orgWithOutPasswordHash) {
     const org = await prisma.org.update({
       where: {
-        id,
+        id: data.id,
       },
       data,
     })
@@ -29,6 +29,7 @@ export class PrismaOrgsRepository implements OrgsRepository {
         city: true,
         id: true,
         name: true,
+        email: true,
         organization: true,
         road: true,
         sector: true,

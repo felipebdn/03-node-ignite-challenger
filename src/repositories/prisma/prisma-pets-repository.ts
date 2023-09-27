@@ -5,6 +5,36 @@ import { DataQueryFilterPets } from '@/lib/data-query-pets'
 import { z } from 'zod'
 
 export class PrismaPetsRepository implements PetsRespository {
+  async update(
+    data: {
+      name: string
+      energy_level: number
+      size: string
+      age: string
+      description: string
+      requirements: string
+      independence: string
+      environment: string
+    },
+    id: string,
+  ) {
+    const pet = await prisma.pet.update({
+      where: {
+        id,
+      },
+      data,
+    })
+    return pet
+  }
+
+  async delete(id: string) {
+    await prisma.pet.delete({
+      where: {
+        id,
+      },
+    })
+  }
+
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = await prisma.pet.create({
       data: {

@@ -26,7 +26,7 @@ export async function orgAuthenticate(req: FastifyRequest, res: FastifyReply) {
       {
         sign: {
           sub: org.id,
-          expiresIn: '7d',
+          expiresIn: '1d',
         },
       },
     )

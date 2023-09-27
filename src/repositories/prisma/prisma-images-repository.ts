@@ -10,13 +10,9 @@ export class PrismaImagesRepository implements ImagesRepository {
     })
   }
 
-  async create(url: string, petId: string, key: string) {
+  async create(data: { url: string; pet_id: string; key: string }) {
     const image = await prisma.image.create({
-      data: {
-        key,
-        url,
-        pet_id: petId,
-      },
+      data,
     })
     return image
   }

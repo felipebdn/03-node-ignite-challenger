@@ -4,6 +4,7 @@ import { VerifyJWT } from '@/http/middlewares/verify-jwt'
 import { uploadRoute } from './upload'
 import { petRegisterSchema } from '@/swagger-schemas/pet-register'
 import { uploadImageSchema } from '@/swagger-schemas/upload-image-schema'
+import { deleteImageRoute } from './delete-image'
 
 export async function authRoutes(app: FastifyInstance) {
   app.addHook('onRequest', VerifyJWT)
@@ -11,4 +12,6 @@ export async function authRoutes(app: FastifyInstance) {
   app.post('/pets', petRegisterSchema, petRegister)
 
   app.post('/upload/:id', uploadImageSchema, uploadRoute)
+
+  app.delete('/pet/image/:key', deleteImageRoute)
 }

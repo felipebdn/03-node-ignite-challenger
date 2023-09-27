@@ -1,6 +1,6 @@
 import { Org, Prisma } from '@prisma/client'
 
-type orgWithOutPasswordHash = {
+export type orgWithOutPasswordHash = {
   id: string
   name: string
   email: string
