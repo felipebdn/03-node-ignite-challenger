@@ -1,5 +1,7 @@
-import { OrgsRepository } from '@/repositories/orgs-repository'
-import { Org } from '@prisma/client'
+import {
+  OrgsRepository,
+  orgWithOutPasswordHash,
+} from '@/repositories/orgs-repository'
 import { OrgAlreadyUsingWhatsappError } from './errors/org-already-using-whatsapp'
 import { OrgAlreadyExistsError } from './errors/org-already-exists-error'
 
@@ -20,7 +22,7 @@ interface UpdateOrgRequest {
 }
 
 interface UpdateOrgResponse {
-  org: Org
+  org: orgWithOutPasswordHash
 }
 
 export class UpdateOrgUseCase {
@@ -39,7 +41,11 @@ export class UpdateOrgUseCase {
       throw new OrgAlreadyUsingWhatsappError()
     }
 
-    const org = await this.orgsRepository.updateOrg({ ...data, id: orgId })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password_hash, ...org } = await this.orgsRepository.updateOrg({
+      ...data,
+      id: orgId,
+    })
 
     return { org }
   }

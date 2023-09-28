@@ -49,7 +49,7 @@ export async function uploadRoute(req: FastifyRequest, res: FastifyReply) {
     Key: fileName,
     Body: await upload.toBuffer(),
     ContentType: upload.mimetype,
-    ACL: 'public-read',
+    ACL: 'public-read-write', // verificar -> bucket-owner-full-control
   })
 
   await s3.send(putObjectCommand)

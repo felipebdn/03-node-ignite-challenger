@@ -3,6 +3,7 @@ import { DeleteObjectCommand } from '@aws-sdk/client-s3'
 import { z } from 'zod'
 import { env } from '@/env'
 import { s3 } from '@/lib/s3'
+import { MakeDeleteImagesUseCase } from '@/use-cases/factories/make-delete-image-use-case'
 
 export async function deleteImageRoute(req: FastifyRequest, res: FastifyReply) {
   const UploadRouteParamsSchema = z.object({
@@ -11,28 +12,18 @@ export async function deleteImageRoute(req: FastifyRequest, res: FastifyReply) {
 
   const { key } = UploadRouteParamsSchema.parse(req.params)
 
-  // const fileId = randomUUID()
-  // const extension = extname(upload.filename)
-
-  // const fileName = fileId.concat(extension)
-
   const deleteObjectCommand = new DeleteObjectCommand({
     Bucket: env.AWS_BUCKET,
     Key: key,
   })
 
-  await s3.send(deleteObjectCommand)
-  console.log(deleteObjectCommand)
+  const makeDeleteImagesUseCase = MakeDeleteImagesUseCase()
 
-  // const makeUploadImagesUseCase = MakeUploadImagesUseCase()
-
-  // const urlImage = env.AWS_URL_IMAGE.concat('/', fileName)
-
-  // makeUploadImagesUseCase.execute({
-  //   pet_id: id,
-  //   url: urlImage,
-  //   key: fileName,
-  // })
-
-  // return { ok: true }
+  try {
+    await s3.send(deleteObjectCommand)
+    makeDeleteImagesUseCase.execute(key)
+    return res.status(200).send()
+  } catch (error) {
+    return res.status(400).send()
+  }
 }
