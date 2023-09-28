@@ -10,7 +10,7 @@ interface PetRegisterUseCaseRequest {
     description: string
     independence: 'low' | 'medium' | 'high'
     environment: string
-    requirements?: string
+    requirements: string
     org_id: string
   }
 }
@@ -25,12 +25,9 @@ export class PetRegisterUseCase {
   async execute(
     valueData: PetRegisterUseCaseRequest,
   ): Promise<PetRegisterUseCaseResponse> {
-    const { requirements, ...data } = valueData.data
+    const data = valueData.data
 
-    const pet = await this.petsRepository.create({
-      ...data,
-      requirements: requirements || 'empty',
-    })
+    const pet = await this.petsRepository.create(data)
 
     return { pet }
   }

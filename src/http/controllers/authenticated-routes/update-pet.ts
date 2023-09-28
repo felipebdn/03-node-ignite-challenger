@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { makePetRegisterUseCase } from '@/use-cases/factories/make-register-pet-use-case'
 import { z } from 'zod'
+import { MakeUpdatePetUseCase } from '@/use-cases/factories/make-update-pet-use-case'
 
-export async function petRegister(req: FastifyRequest, res: FastifyReply) {
+export async function updatePet(req: FastifyRequest, res: FastifyReply) {
   const petBodySchema = z.object({
     name: z.string().nonempty('None empty'),
     energy_level: z.coerce.number().min(1).max(5),
@@ -11,17 +11,19 @@ export async function petRegister(req: FastifyRequest, res: FastifyReply) {
     description: z.string().nonempty('None empty'),
     independence: z.enum(['low', 'medium', 'high']),
     environment: z.string().nonempty('None empty'),
-    requirements: z.string().optional().default('Empty'),
+    requirements: z.string().optional().default('empty'),
   })
+  const petIdParamSchema = z.object({
+    id: z.string(),
+  })
+  const { id } = petIdParamSchema.parse(req.params)
   const data = petBodySchema.parse(req.body)
 
-  const petRegisterUseCase = makePetRegisterUseCase()
+  const updatePetUseCase = MakeUpdatePetUseCase()
 
-  const resData = await petRegisterUseCase.execute({
-    data: {
-      ...data,
-      org_id: req.user.sub,
-    },
+  const resData = await updatePetUseCase.execute({
+    data,
+    petId: id,
   })
 
   return res.status(201).send(resData.pet)
