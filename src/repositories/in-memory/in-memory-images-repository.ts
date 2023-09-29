@@ -5,6 +5,14 @@ import { randomUUID } from 'crypto'
 export class InMemoryImagesRepository implements ImagesRepository {
   public imagesPet: Image[] = []
 
+  async findByKey(key: string) {
+    const image = this.imagesPet.find((item) => item.key === key)
+    if (!image) {
+      return null
+    }
+    return image
+  }
+
   async delete(key: string): Promise<void> {
     this.imagesPet = this.imagesPet.filter((item) => item.url !== key)
   }
