@@ -16,8 +16,8 @@ export async function updatePet(req: FastifyRequest, res: FastifyReply) {
   const petIdParamSchema = z.object({
     id: z.string(),
   })
-  const { id } = petIdParamSchema.parse(req.params)
   const data = petBodySchema.parse(req.body)
+  const { id } = petIdParamSchema.parse(req.params)
 
   const updatePetUseCase = MakeUpdatePetUseCase()
 
