@@ -7,17 +7,20 @@ import { uploadImageSchema } from '@/swagger-schemas/upload-image-schema'
 import { deleteImageRoute } from './delete-image'
 import { updateOrg } from './update-org'
 import { updatePet } from './update-pet'
+import { deletePet } from './delete-pet'
 
 export async function authRoutes(app: FastifyInstance) {
   app.addHook('onRequest', VerifyJWT)
 
-  app.post('/pet/register', petRegisterSchema, petRegister)
-
   app.post('/upload/:id', uploadImageSchema, uploadRoute)
+
+  app.post('/pet/register', petRegisterSchema, petRegister)
 
   app.delete('/pet/image/:key', deleteImageRoute)
 
-  app.post('/pet/update/:id', updatePet)
+  app.put('/pet/update/:id', updatePet)
+
+  app.delete('/pet/:id', deletePet)
 
   app.post('/org/update/:id', updateOrg)
 }

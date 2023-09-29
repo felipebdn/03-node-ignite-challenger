@@ -1,4 +1,5 @@
 import { OrgsRepository } from '@/repositories/orgs-repository'
+import { OrgNotFoundError } from './errors/org-not-found'
 
 interface GetInfoOrgUseCaseResponse {
   id: string
@@ -19,6 +20,10 @@ export class GetInfoOrgUseCase {
 
   async execute(id: string): Promise<GetInfoOrgUseCaseResponse | null> {
     const org = await this.orgsRepository.findById(id)
+
+    if (!org) {
+      throw new OrgNotFoundError()
+    }
 
     return org
   }
