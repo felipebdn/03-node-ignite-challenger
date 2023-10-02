@@ -48,7 +48,7 @@ describe('Fetch Pets (e2e)', () => {
       .get('/pets')
       .query({
         state: 'PA',
-        city: 'Conceição do Araguaia',
+        city: 'city example',
       })
       .send()
 
@@ -59,7 +59,7 @@ describe('Fetch Pets (e2e)', () => {
       .get('/pets')
       .query({
         state: 'PA',
-        city: 'Conceição do Araguaia',
+        city: 'city example',
         size: 'medium',
       })
       .send()

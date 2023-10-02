@@ -16,14 +16,14 @@ describe('Register Pet (e2e)', () => {
     const { token } = await createAndAuthenticateOrg(app)
 
     const response = await request(app.server)
-      .post('/pets')
+      .post('/pet/register')
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'wallison',
         energy_level: 3,
         size: 'small',
         age: 'adolescent',
-        description: 'z.string()',
+        description: 'example',
         independence: 'medium',
         requirements: 'cuidado',
         environment: 'lugares pequenos',

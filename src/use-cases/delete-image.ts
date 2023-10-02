@@ -18,8 +18,6 @@ export class DeleteImageUseCase {
 
     const pet = await this.petsRespository.findById(image.pet_id)
 
-    console.log(pet?.org_id, org_id)
-
     if (pet && pet.org_id !== org_id) {
       throw new OperationNotAuthorizedError()
     }

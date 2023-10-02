@@ -3,16 +3,16 @@ import request from 'supertest'
 
 export async function createAndAuthenticateOrg(app: FastifyInstance) {
   await request(app.server).post('/orgs').send({
-    name: 'Felipe 1',
-    organization: 'teste 1',
+    name: 'example',
+    organization: 'org example',
     email: 'teste@example.com',
     state: 'PA',
-    city: 'Conceição do Araguaia',
-    number: 1370,
-    road: 'nova prata',
-    sector: 'alto parana',
-    cep: 84874000,
-    whatsapp: 94991487963,
+    city: 'city example',
+    number: 1,
+    road: 'road example',
+    sector: 'sector example',
+    cep: 12345678,
+    whatsapp: 12345678910,
     password: '123456',
   })
 
