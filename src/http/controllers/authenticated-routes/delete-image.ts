@@ -20,8 +20,8 @@ export async function deleteImageRoute(req: FastifyRequest, res: FastifyReply) {
   const makeDeleteImagesUseCase = MakeDeleteImagesUseCase()
 
   try {
+    makeDeleteImagesUseCase.execute(key, req.user.sub)
     await s3.send(deleteObjectCommand)
-    makeDeleteImagesUseCase.execute(key)
     return res.status(200).send()
   } catch (error) {
     return res.status(400).send()
