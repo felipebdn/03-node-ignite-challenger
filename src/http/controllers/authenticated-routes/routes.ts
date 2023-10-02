@@ -22,5 +22,5 @@ export async function authRoutes(app: FastifyInstance) {
 
   app.delete('/pet/:id', deletePet)
 
-  app.post('/org/update/:id', updateOrg)
+  app.put('/org/update/:id', updateOrg)
 }
