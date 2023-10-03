@@ -19,14 +19,14 @@ describe('Register Pet (e2e)', () => {
       .post('/pet/register')
       .set('Authorization', `Bearer ${token}`)
       .send({
-        name: 'wallison',
+        name: 'example',
         energy_level: 3,
         size: 'small',
         age: 'adolescent',
         description: 'example',
         independence: 'medium',
-        requirements: 'cuidado',
-        environment: 'lugares pequenos',
+        requirements: 'example',
+        environment: 'example',
       })
 
     expect(response.statusCode).toEqual(201)

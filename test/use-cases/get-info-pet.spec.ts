@@ -23,52 +23,52 @@ describe('Pets Get Info Pet Use Case', () => {
   })
   it('should be able to get info of pet', async () => {
     const org = await inMemoryOrgsRepository.create({
-      name: 'Felipe',
-      organization: 'Dev pet',
+      name: 'example',
+      organization: 'example',
       email: 'teste@example.com',
       number: '1370',
-      road: 'nova prata',
-      sector: 'alto parana',
+      road: 'example road',
+      sector: 'example sector',
       state: 'PA',
-      city: 'Redenção',
-      cep: 84874000,
-      whatsapp: '(94) 99148-7963',
+      city: 'city example',
+      cep: 12345678,
+      whatsapp: '12345678910',
       password_hash: await hash('123456', 6),
     })
     await inMemoryPetsRepository.create({
-      name: 'Felipe',
+      name: 'example',
       energy_level: 4,
       size: 'small',
       age: 'adolescent',
-      description: 'z.string()',
+      description: 'example',
       independence: 'medium',
-      environment: 'Lugares fechados',
+      environment: 'example',
       org_id: org.id,
-      requirements: 'cuidado',
+      requirements: 'example',
     })
     const { id } = await inMemoryPetsRepository.create({
-      name: 'Felipe',
+      name: 'example',
       energy_level: 4,
       size: 'small',
       age: 'adolescent',
-      description: 'z.string()',
+      description: 'example',
       independence: 'medium',
-      environment: 'Lugares fechados',
+      environment: 'example',
       org_id: org.id,
-      requirements: 'cuidado',
+      requirements: 'example',
     })
 
     const data = await sut.execute(id)
 
     expect(data?.pet).toEqual({
-      name: 'Felipe',
+      name: 'example',
       energy_level: 4,
       size: 'small',
       age: 'adolescent',
-      description: 'z.string()',
+      description: 'example',
       independence: 'medium',
-      environment: 'Lugares fechados',
-      requirements: 'cuidado',
+      environment: 'example',
+      requirements: 'example',
       org_id: org.id,
       id: expect.any(String),
     })

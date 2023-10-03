@@ -18,9 +18,9 @@ describe('Update Pet Use Case', () => {
       age: 'adolescent',
       description: 'empty',
       independence: 'medium',
-      environment: 'Lugares fechados',
+      environment: 'example',
       org_id: 'org_id',
-      requirements: 'carinho',
+      requirements: 'example',
     })
     const { pet } = await sut.execute({
       data: {
@@ -30,8 +30,8 @@ describe('Update Pet Use Case', () => {
         age: 'cub',
         description: 'empty',
         independence: 'low',
-        environment: 'Lugares fechados',
-        requirements: 'carinho',
+        environment: 'example',
+        requirements: 'example',
       },
       petId: createPet.id,
     })
@@ -44,8 +44,8 @@ describe('Update Pet Use Case', () => {
         age: 'cub',
         description: 'empty',
         independence: 'low',
-        environment: 'Lugares fechados',
-        requirements: 'carinho',
+        environment: 'example',
+        requirements: 'example',
       }),
     )
   })

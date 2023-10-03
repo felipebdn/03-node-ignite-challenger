@@ -13,16 +13,16 @@ describe('Register Org (e2e)', () => {
 
   it('should be able to register Org', async () => {
     const res = await request(app.server).post('/orgs').send({
-      name: 'Felipe 1',
-      organization: 'teste 1',
+      name: 'example 1',
+      organization: 'example 1',
       email: 'teste@example.com',
       state: 'PA',
-      number: 1370,
-      road: 'nova prata',
-      sector: 'alto parana',
-      city: 'Conceição do Araguaia',
-      cep: 84874000,
-      whatsapp: 94991487963,
+      number: 1234,
+      road: 'example road',
+      sector: 'example sector',
+      city: 'city example',
+      cep: 12345678,
+      whatsapp: 12345678910,
       password: '123456',
     })
 

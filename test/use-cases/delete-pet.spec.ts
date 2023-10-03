@@ -16,11 +16,11 @@ describe('Delete Pet Use Case', () => {
       energy_level: 5,
       size: 'medium',
       age: 'adolescent',
-      description: 'z.string()',
+      description: 'example',
       independence: 'medium',
-      environment: 'Lugares fechados',
+      environment: 'example',
       org_id: 'org_id',
-      requirements: 'carinho',
+      requirements: 'example',
     })
     await sut.execute(createPet.id, 'org_id')
 
