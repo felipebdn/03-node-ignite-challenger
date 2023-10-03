@@ -22,7 +22,7 @@ describe('Delete Pet Use Case', () => {
       org_id: 'org_id',
       requirements: 'carinho',
     })
-    await sut.execute(createPet.id)
+    await sut.execute(createPet.id, 'org_id')
 
     const pet = await inMemoryPetsRepository.findById(createPet.id)
 
