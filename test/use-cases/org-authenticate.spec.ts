@@ -14,16 +14,16 @@ describe('Orgs Authenticate Use Case', () => {
   })
   it('should be able to authenticate', async () => {
     await inMemoryOrgsRepository.create({
-      name: 'Felipe',
-      organization: 'Dev pet',
+      name: 'example',
+      organization: 'example',
       email: 'teste@example.com',
-      number: '1370',
-      road: 'nova prata',
-      sector: 'alto parana',
+      number: '1234',
+      road: 'example road',
+      sector: 'example sector',
       state: 'PA',
-      city: 'Redenção',
-      cep: 84874000,
-      whatsapp: '(94) 99148-7963',
+      city: 'city example',
+      cep: 12345678,
+      whatsapp: '12345678910',
       password_hash: await hash('123456', 6),
     })
 
@@ -45,16 +45,16 @@ describe('Orgs Authenticate Use Case', () => {
   })
   it('should not be able to authenticate with wrong password', async () => {
     await inMemoryOrgsRepository.create({
-      name: 'Felipe',
-      organization: 'Dev pet',
+      name: 'example',
+      organization: 'example',
       email: 'teste@example.com',
       state: 'PA',
-      number: '1370',
-      road: 'nova prata',
-      sector: 'alto parana',
-      city: 'Redenção',
-      cep: 84874000,
-      whatsapp: '(94) 99148-7963',
+      number: '1234',
+      road: 'example road',
+      sector: 'example sector',
+      city: 'city example',
+      cep: 12345678,
+      whatsapp: '12345678910',
       password_hash: await hash('123456', 6),
     })
 

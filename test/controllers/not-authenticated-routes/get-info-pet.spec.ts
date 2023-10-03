@@ -19,27 +19,27 @@ describe('Get Info Pet (e2e)', () => {
 
     await prisma.pet.create({
       data: {
-        name: 'wallison1',
+        name: 'example1',
         energy_level: 3,
         size: 'small',
         age: 'adolescent',
-        description: 'z.string()',
+        description: 'example',
         independence: 'medium',
-        environment: 'lugares pequenos',
-        requirements: 'cuidado',
+        environment: 'example',
+        requirements: 'example',
         org_id: user.id,
       },
     })
     const pet = await prisma.pet.create({
       data: {
-        name: 'wallison',
+        name: 'example',
         energy_level: 3,
         size: 'small',
         age: 'adolescent',
-        description: 'z.string()',
+        description: 'example',
         independence: 'medium',
-        environment: 'lugares pequenos',
-        requirements: 'cuidado',
+        environment: 'example',
+        requirements: 'example',
         org_id: user.id,
       },
     })
@@ -49,7 +49,7 @@ describe('Get Info Pet (e2e)', () => {
     expect(res.statusCode).toEqual(200)
     expect(res.body.pet).toEqual(
       expect.objectContaining({
-        name: 'wallison',
+        name: 'example',
         id: pet.id,
       }),
     )

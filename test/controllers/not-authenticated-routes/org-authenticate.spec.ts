@@ -13,16 +13,16 @@ describe('Authenticate Org (e2e)', () => {
 
   it('should be able to authenticate', async () => {
     await request(app.server).post('/orgs').send({
-      name: 'Felipe 1',
-      organization: 'teste 1',
+      name: 'example 1',
+      organization: 'example 1',
       email: 'teste@example.com',
       number: 1370,
-      road: 'nova prata',
-      sector: 'alto parana',
+      road: 'example road',
+      sector: 'example sector',
       state: 'PA',
-      city: 'Conceição do Araguaia',
-      cep: 84874000,
-      whatsapp: 94991487963,
+      city: 'city example',
+      cep: 12345678,
+      whatsapp: 12345678910,
       password: '123456',
     })
 

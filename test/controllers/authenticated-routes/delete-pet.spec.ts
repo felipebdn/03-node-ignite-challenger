@@ -20,14 +20,14 @@ describe('Delete Pet (e2e)', () => {
 
     const pet = await prisma.pet.create({
       data: {
-        name: 'wallison',
+        name: 'example',
         energy_level: 3,
         size: 'small',
         age: 'adolescent',
         description: 'example',
         independence: 'medium',
-        requirements: 'cuidado',
-        environment: 'lugares pequenos',
+        requirements: 'example',
+        environment: 'example',
         org_id: org.id,
       },
     })
@@ -74,14 +74,14 @@ describe('Delete Pet (e2e)', () => {
 
     const pet = await prisma.pet.create({
       data: {
-        name: 'wallison',
+        name: 'example',
         energy_level: 3,
         size: 'small',
         age: 'adolescent',
         description: 'example',
         independence: 'medium',
-        requirements: 'cuidado',
-        environment: 'lugares pequenos',
+        requirements: 'example',
+        environment: 'example',
         org_id: org.id,
       },
     })
