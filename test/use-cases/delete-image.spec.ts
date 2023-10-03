@@ -4,7 +4,7 @@ import { DeleteImageUseCase } from '@/use-cases/delete-image'
 import { ImageNotFoundError } from '@/use-cases/errors/image-not-found-error'
 import { OperationNotAuthorizedError } from '@/use-cases/errors/operation-not-authorized-error'
 import { randomUUID } from 'crypto'
-import { beforeEach, describe, expect, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 let inMemoryImagesRepository: InMemoryImagesRepository
 let inMemoryPetsRepository: InMemoryPetsRepository
