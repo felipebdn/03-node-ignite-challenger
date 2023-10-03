@@ -11,7 +11,7 @@ export class PrismaImagesRepository implements ImagesRepository {
     return image
   }
 
-  async delete(key: string): Promise<void> {
+  async delete(key: string) {
     await prisma.image.delete({
       where: {
         key,

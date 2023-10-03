@@ -11,17 +11,13 @@ export class DeleteImageUseCase {
 
   async execute(key: string, org_id: string): Promise<void> {
     const image = await this.imagesRepository.findByKey(key)
-
     if (!image) {
       throw new ImageNotFoundError()
     }
-
     const pet = await this.petsRespository.findById(image.pet_id)
-
-    if (pet && pet.org_id !== org_id) {
+    if (pet?.org_id !== org_id) {
       throw new OperationNotAuthorizedError()
     }
-
     await this.imagesRepository.delete(key)
   }
 }

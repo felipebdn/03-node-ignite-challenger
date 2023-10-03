@@ -34,6 +34,7 @@ describe('Upload Image Pet Use Case', () => {
       pet_id: pet.id,
       url: 'imageurl',
       key: randomUUID(),
+      org_id: 'org_id',
     })
 
     expect(image).toEqual(

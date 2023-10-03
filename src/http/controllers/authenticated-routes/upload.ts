@@ -1,5 +1,6 @@
 import { env } from '@/env'
 import { s3 } from '@/lib/s3'
+import { OperationNotAuthorizedError } from '@/use-cases/errors/operation-not-authorized-error'
 import { PetNotFoundError } from '@/use-cases/errors/pet-not-found'
 import { MakeUploadImagesUseCase } from '@/use-cases/factories/make-upload-images-use-case'
 import { PutObjectCommand } from '@aws-sdk/client-s3'
@@ -61,12 +62,15 @@ export async function uploadRoute(req: FastifyRequest, res: FastifyReply) {
       pet_id: id,
       url: urlImage,
       key: fileName,
+      org_id: req.user.sub,
     })
     await s3.send(putObjectCommand)
 
     return res.status(200).send(image)
   } catch (err) {
-    if (err instanceof PetNotFoundError) {
+    if (err instanceof OperationNotAuthorizedError) {
+      return res.status(400).send({ message: err.message })
+    } else if (err instanceof PetNotFoundError) {
       return res.status(400).send({ message: err.message })
     }
   }
