@@ -11,8 +11,8 @@ export async function FetchPets(req: FastifyRequest, res: FastifyReply) {
     city: z.string().nonempty('None empty'),
     age: z.enum(['cub', 'adolescent', 'elderly']).optional(),
     energy_level: z.coerce.number().min(1).max(5).optional(),
-    size: z.enum(['small', 'medium', 'big']).optional(),
     independence: z.enum(['low', 'medium', 'high']).optional(),
+    size: z.enum(['small', 'medium', 'big']).optional(),
   })
 
   const data = queryParamsSchema.parse(req.query)

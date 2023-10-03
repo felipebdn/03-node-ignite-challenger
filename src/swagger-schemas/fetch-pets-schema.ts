@@ -25,7 +25,7 @@ export const fetchPetsSchema: RouteShorthandOptions = {
           description: '"small", "medium" ou "big"',
         },
         independence: {
-          type: 'number',
+          type: 'string',
           description: '"low", "medium" ou "high"',
         },
       },
