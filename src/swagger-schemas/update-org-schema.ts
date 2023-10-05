@@ -1,10 +1,10 @@
 import { RouteShorthandOptions } from 'fastify'
 
-export const updatePetSchema: RouteShorthandOptions = {
+export const updateOrgchema: RouteShorthandOptions = {
   schema: {
     description: 'Essa rota é responsável por atualizar os dados sobre o pet',
     summary: 'Atualizar pet',
-    tags: ['Pets'],
+    tags: ['Orgs'],
     params: {
       type: 'object',
       required: ['id'],
@@ -53,20 +53,21 @@ export const updatePetSchema: RouteShorthandOptions = {
             properties: {
               id: { type: 'string' },
               name: { type: 'string' },
-              energy_level: { type: 'number' },
-              size: { type: 'string' },
-              age: { type: 'string' },
-              description: { type: 'string' },
-              requirements: { type: 'string' },
-              independence: { type: 'string' },
-              environment: { type: 'string' },
-              org_id: { type: 'string' },
+              email: { type: 'string' },
+              organization: { type: 'string' },
+              road: { type: 'string' },
+              number: { type: 'string' },
+              sector: { type: 'string' },
+              city: { type: 'string' },
+              state: { type: 'string' },
+              cep: { type: 'number' },
+              whatsapp: { type: 'string' },
             },
           },
         },
       },
-      400: {
-        description: 'Pet already exists',
+      409: {
+        description: 'Email ou numero de telefone ja em uso',
         type: 'object',
         properties: {
           message: { type: 'string' },

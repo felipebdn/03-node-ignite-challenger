@@ -11,6 +11,7 @@ import { deletePet } from './delete-pet'
 import { deleteImage } from '@/swagger-schemas/delete-image-schema'
 import { updatePetSchema } from '@/swagger-schemas/update-pet-schema'
 import { deletePetSchema } from '@/swagger-schemas/delete-pet-schema'
+import { updateOrgchema } from '@/swagger-schemas/update-org-schema'
 
 export async function authRoutes(app: FastifyInstance) {
   app.addHook('onRequest', VerifyJWT)
@@ -25,5 +26,5 @@ export async function authRoutes(app: FastifyInstance) {
 
   app.delete('/pet/:id', deletePetSchema, deletePet)
 
-  app.put('/org/update/:id', updatePetSchema, updateOrg)
+  app.put('/org/update/:id', updateOrgchema, updateOrg)
 }

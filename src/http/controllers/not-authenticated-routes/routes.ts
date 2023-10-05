@@ -8,11 +8,12 @@ import { orgAuthenticateSchema } from '@/swagger-schemas/org-authenticate'
 import { getInfoPetSchema } from '@/swagger-schemas/get-info-pet-schema'
 import { fetchPetsSchema } from '@/swagger-schemas/fetch-pets-schema'
 import { GetInfoOrg } from './get-info-org'
+import { getInfoOrgSchema } from '@/swagger-schemas/get-info-org-schema'
 
 export async function notAuthRoutes(app: FastifyInstance) {
   app.post('/sessions', orgAuthenticateSchema, orgAuthenticate)
   app.post('/orgs', orgsRegisterSchema, orgRegister)
-  app.get('/org/:id', GetInfoOrg)
+  app.get('/org/:id', getInfoOrgSchema, GetInfoOrg)
   app.get('/pets', fetchPetsSchema, FetchPets)
   app.get('/pet/:id', getInfoPetSchema, GetInfoPet)
 }

@@ -14,5 +14,5 @@
 - [x] delete-image
 - [x] delete-pet
 - [x] pet-register
-- [ ] update-org
+- [x] update-org
 - [x] update-pet
