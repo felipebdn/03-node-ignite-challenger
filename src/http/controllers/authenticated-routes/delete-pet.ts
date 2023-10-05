@@ -19,7 +19,7 @@ export async function deletePet(req: FastifyRequest, res: FastifyReply) {
     if (err instanceof PetNotFoundError) {
       return res.status(400).send(err.message)
     } else if (err instanceof OperationNotAuthorizedError) {
-      return res.status(400).send(err.message)
+      return res.status(401).send(err.message)
     }
   }
 }

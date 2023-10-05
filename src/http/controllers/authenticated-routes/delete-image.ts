@@ -26,7 +26,7 @@ export async function deleteImageRoute(req: FastifyRequest, res: FastifyReply) {
     return res.status(200).send()
   } catch (err) {
     if (err instanceof OperationNotAuthorizedError) {
-      return res.status(400).send({ message: err.message })
+      return res.status(401).send({ message: err.message })
     } else if (err instanceof ImageNotFoundError) {
       return res.status(400).send({ message: err.message })
     }

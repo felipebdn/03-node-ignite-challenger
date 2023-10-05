@@ -8,6 +8,9 @@ import { deleteImageRoute } from './delete-image'
 import { updateOrg } from './update-org'
 import { updatePet } from './update-pet'
 import { deletePet } from './delete-pet'
+import { deleteImage } from '@/swagger-schemas/delete-image-schema'
+import { updatePetSchema } from '@/swagger-schemas/update-pet-schema'
+import { deletePetSchema } from '@/swagger-schemas/delete-pet-schema'
 
 export async function authRoutes(app: FastifyInstance) {
   app.addHook('onRequest', VerifyJWT)
@@ -16,11 +19,11 @@ export async function authRoutes(app: FastifyInstance) {
 
   app.post('/pet/register', petRegisterSchema, petRegister)
 
-  app.delete('/pet/image/:key', deleteImageRoute)
+  app.delete('/pet/image/:key', deleteImage, deleteImageRoute)
 
-  app.put('/pet/update/:id', updatePet)
+  app.put('/pet/update/:id', updatePetSchema, updatePet)
 
-  app.delete('/pet/:id', deletePet)
+  app.delete('/pet/:id', deletePetSchema, deletePet)
 
-  app.put('/org/update/:id', updateOrg)
+  app.put('/org/update/:id', updatePetSchema, updateOrg)
 }

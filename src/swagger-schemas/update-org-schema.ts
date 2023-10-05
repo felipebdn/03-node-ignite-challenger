@@ -1,10 +1,17 @@
 import { RouteShorthandOptions } from 'fastify'
 
-export const orgsRegisterSchema: RouteShorthandOptions = {
+export const updatePetSchema: RouteShorthandOptions = {
   schema: {
-    description: 'Essa rota é responsável por cadastrar uma nova organização',
-    summary: 'Cadastrar Organização',
-    tags: ['Orgs'],
+    description: 'Essa rota é responsável por atualizar os dados sobre o pet',
+    summary: 'Atualizar pet',
+    tags: ['Pets'],
+    params: {
+      type: 'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'string' },
+      },
+    },
     body: {
       type: 'object',
       required: [
@@ -17,7 +24,6 @@ export const orgsRegisterSchema: RouteShorthandOptions = {
         'road',
         'sector',
         'whatsapp',
-        'password',
       ],
       properties: {
         name: { type: 'string' },
@@ -36,29 +42,31 @@ export const orgsRegisterSchema: RouteShorthandOptions = {
         road: { type: 'string' },
         sector: { type: 'string' },
         whatsapp: { type: 'number' },
-        password: { type: 'string' },
       },
     },
     response: {
       201: {
-        description: 'Organização registrada com sucesso',
         type: 'object',
         properties: {
-          id: { type: 'string' },
-          name: { type: 'string' },
-          email: { type: 'string' },
-          organization: { type: 'string' },
-          road: { type: 'string' },
-          number: { type: 'string' },
-          sector: { type: 'string' },
-          city: { type: 'string' },
-          state: { type: 'string' },
-          cep: { type: 'number' },
-          whatsapp: { type: 'string' },
+          pet: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              energy_level: { type: 'number' },
+              size: { type: 'string' },
+              age: { type: 'string' },
+              description: { type: 'string' },
+              requirements: { type: 'string' },
+              independence: { type: 'string' },
+              environment: { type: 'string' },
+              org_id: { type: 'string' },
+            },
+          },
         },
       },
-      409: {
-        description: 'Org already exists',
+      400: {
+        description: 'Pet already exists',
         type: 'object',
         properties: {
           message: { type: 'string' },
