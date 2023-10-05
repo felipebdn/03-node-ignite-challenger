@@ -31,7 +31,19 @@ export const petRegisterSchema: RouteShorthandOptions = {
     response: {
       201: {
         description: 'Pet registrado com sucesso.',
-        type: 'null',
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+          name: { type: 'string' },
+          energy_level: { type: 'number' },
+          size: { type: 'string' },
+          age: { type: 'string' },
+          description: { type: 'string' },
+          requirements: { type: 'string' },
+          independence: { type: 'string' },
+          environment: { type: 'string' },
+          org_id: { type: 'string' },
+        },
       },
       401: {
         description: 'Unauthorized',

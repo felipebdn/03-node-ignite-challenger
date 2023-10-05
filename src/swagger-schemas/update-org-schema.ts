@@ -2,8 +2,10 @@ import { RouteShorthandOptions } from 'fastify'
 
 export const updateOrgchema: RouteShorthandOptions = {
   schema: {
-    description: 'Essa rota é responsável por atualizar os dados sobre o pet',
-    summary: 'Atualizar pet',
+    description:
+      'Essa rota é responsável por atualizar os dados de uma organização.',
+    summary: 'Atualizar organização',
+    security: [{ http: [] }],
     tags: ['Orgs'],
     params: {
       type: 'object',

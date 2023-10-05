@@ -2,8 +2,9 @@ import { RouteShorthandOptions } from 'fastify'
 
 export const getInfoOrgSchema: RouteShorthandOptions = {
   schema: {
-    description: 'Essa rota é responsável por cadastrar uma nova organização',
-    summary: 'Cadastrar Organização',
+    description:
+      'Essa rota é responsável buscar informações de uma organização',
+    summary: 'Buscar organização',
     tags: ['Orgs'],
     params: {
       type: 'object',

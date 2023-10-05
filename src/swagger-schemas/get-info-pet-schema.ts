@@ -3,7 +3,7 @@ import { RouteShorthandOptions } from 'fastify'
 export const getInfoPetSchema: RouteShorthandOptions = {
   schema: {
     description: 'Essa rota é responsável mostrar as informações de um pet',
-    summary: 'Bunscar Pet',
+    summary: 'Buscar Pet',
     tags: ['Pets'],
     params: {
       type: 'object',

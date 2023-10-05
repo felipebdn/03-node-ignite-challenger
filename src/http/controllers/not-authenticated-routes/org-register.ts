@@ -46,7 +46,9 @@ export async function orgRegister(req: FastifyRequest, res: FastifyReply) {
   try {
     const orgRegisterUseCase = makeOrgRegisterUseCase()
 
-    await orgRegisterUseCase.execute(data)
+    const { org } = await orgRegisterUseCase.execute(data)
+
+    res.status(201).send(org)
   } catch (err) {
     if (err instanceof OrgAlreadyExistsError) {
       return res.status(409).send({ message: err.message })
@@ -55,6 +57,4 @@ export async function orgRegister(req: FastifyRequest, res: FastifyReply) {
     }
     throw err
   }
-
-  res.status(201).send()
 }

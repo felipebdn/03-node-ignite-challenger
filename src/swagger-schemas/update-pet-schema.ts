@@ -4,6 +4,7 @@ export const updatePetSchema: RouteShorthandOptions = {
   schema: {
     description: 'Essa rota é responsável por atualizar os dados sobre o pet',
     summary: 'Atualizar pet',
+    security: [{ http: [] }],
     tags: ['Pets'],
     params: {
       type: 'object',

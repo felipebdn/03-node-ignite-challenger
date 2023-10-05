@@ -1,7 +1,6 @@
 import { OrgsRepository } from '@/repositories/orgs-repository'
 import { hash } from 'bcryptjs'
 import { OrgAlreadyExistsError } from './errors/org-already-exists-error'
-import { Org } from '@prisma/client'
 import { OrgAlreadyUsingWhatsappError } from './errors/org-already-using-whatsapp'
 
 interface OrgRegisterUseCaseRequest {
@@ -19,7 +18,19 @@ interface OrgRegisterUseCaseRequest {
 }
 
 interface OrgRegisterUseCaseResponse {
-  org: Org
+  org: {
+    id: string
+    name: string
+    organization: string
+    email: string
+    road: string
+    number: string
+    sector: string
+    city: string
+    state: string
+    cep: number
+    whatsapp: string
+  }
 }
 
 export class OrgRegisterUseCase {
@@ -41,7 +52,7 @@ export class OrgRegisterUseCase {
       throw new OrgAlreadyUsingWhatsappError()
     }
 
-    const password_hash = await hash(data.password, 6)
+    const passwordHash = await hash(data.password, 6)
 
     const {
       cep,
@@ -56,7 +67,7 @@ export class OrgRegisterUseCase {
       road,
     } = data
 
-    const org = await this.orgsRepository.create({
+    const orgCreate = await this.orgsRepository.create({
       cep,
       city,
       email,
@@ -65,10 +76,14 @@ export class OrgRegisterUseCase {
       sector,
       road,
       organization,
-      password_hash,
+      password_hash: passwordHash,
       state,
       whatsapp,
     })
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password_hash, ...org } = orgCreate
+
     return { org }
   }
 }

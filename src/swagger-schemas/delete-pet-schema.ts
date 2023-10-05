@@ -2,8 +2,9 @@ import { RouteShorthandOptions } from 'fastify'
 
 export const deletePetSchema: RouteShorthandOptions = {
   schema: {
-    description: 'Essa rota é responsável por atualizar os dados sobre o pet',
-    summary: 'Atualizar pet',
+    description: 'Essa rota é responsável por remover um pet',
+    summary: 'Remover pet',
+    security: [{ http: [] }],
     tags: ['Pets'],
     params: {
       type: 'object',
