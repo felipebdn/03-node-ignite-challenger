@@ -7,12 +7,12 @@
 - [x] org-authenticate
 - [x] fetch-pets
 - [x] get-info-pet
-- [ ] get-info-org
+- [x] get-info-org
 
 ### authenticated
 - [x] upload
-- [ ] delete-image
-- [ ] delete-pet
-- [ ] pet-register
+- [x] delete-image
+- [x] delete-pet
+- [x] pet-register
 - [ ] update-org
-- [ ] update-pet
+- [x] update-pet

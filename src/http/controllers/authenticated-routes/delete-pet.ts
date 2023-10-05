@@ -1,8 +1,8 @@
+import { FastifyReply, FastifyRequest } from 'fastify'
+import { z } from 'zod'
 import { OperationNotAuthorizedError } from '@/use-cases/errors/operation-not-authorized-error'
 import { PetNotFoundError } from '@/use-cases/errors/pet-not-found'
 import { MakeDeletePetUseCase } from '@/use-cases/factories/make-delete-pet-use-case'
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { z } from 'zod'
 
 export async function deletePet(req: FastifyRequest, res: FastifyReply) {
   const reqParamsSchema = z.object({

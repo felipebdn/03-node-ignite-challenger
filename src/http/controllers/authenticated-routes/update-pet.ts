@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 import { MakeUpdatePetUseCase } from '@/use-cases/factories/make-update-pet-use-case'
+import { OperationNotAuthorizedError } from '@/use-cases/errors/operation-not-authorized-error'
 
 export async function updatePet(req: FastifyRequest, res: FastifyReply) {
   const petBodySchema = z.object({
@@ -21,10 +22,16 @@ export async function updatePet(req: FastifyRequest, res: FastifyReply) {
 
   const updatePetUseCase = MakeUpdatePetUseCase()
 
-  const resData = await updatePetUseCase.execute({
-    data,
-    petId: id,
-  })
-
-  return res.status(201).send(resData.pet)
+  try {
+    const resData = await updatePetUseCase.execute({
+      data,
+      petId: id,
+      org_id: req.user.sub,
+    })
+    return res.status(201).send(resData.pet)
+  } catch (err) {
+    if (err instanceof OperationNotAuthorizedError) {
+      return res.status(400).send({ message: err.message })
+    }
+  }
 }

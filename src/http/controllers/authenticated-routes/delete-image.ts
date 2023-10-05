@@ -19,16 +19,15 @@ export async function deleteImageRoute(req: FastifyRequest, res: FastifyReply) {
     Key: key,
   })
 
-  const makeDeleteImagesUseCase = MakeDeleteImagesUseCase()
-
   try {
-    makeDeleteImagesUseCase.execute(key, req.user.sub)
+    const makeDeleteImagesUseCase = MakeDeleteImagesUseCase()
+    await makeDeleteImagesUseCase.execute(key, req.user.sub)
     await s3.send(deleteObjectCommand)
     return res.status(200).send()
   } catch (err) {
-    if (err instanceof ImageNotFoundError) {
+    if (err instanceof OperationNotAuthorizedError) {
       return res.status(400).send({ message: err.message })
-    } else if (err instanceof OperationNotAuthorizedError) {
+    } else if (err instanceof ImageNotFoundError) {
       return res.status(400).send({ message: err.message })
     }
   }
