@@ -13,21 +13,3 @@ Para usar no Insomnia importe o arquivo de configuração que se encontra em [as
 ## Requisitos
 
 Para algumas rotas da API é necessário passar o JWT de autenticação, pode ser obtido na rota `/sessions` na documentação do Swagger ou na requisição `Authenticate Org` do Insomnia.
-
-## Exemplos
-
-[Forneça exemplos de solicitações e respostas simples para dar aos usuários uma ideia inicial de como usar a API.]
-
-## Licença
-olha 
-Este projeto é licenciado sob a [Nome da Licença]. Consulte o arquivo [LICENSE.md](LICENSE) para obter detalhes.
-
-## Contato
-
-Se você tiver alguma dúvida ou precisar de assistência, entre em contato conosco em [endereço de e-mail ou link para o formulário de contato].
-
----
-
-Nesse exemplo, substitua `URL_DA_DOCUMENTACAO_SWAGGER` pela URL real da sua documentação Swagger. Isso direcionará os desenvolvedores interessados diretamente para a documentação interativa e detalhada da sua API. Certifique-se de manter a URL da documentação atualizada à medida que ela evolui.
-
-O Markdown é uma linguagem de marcação simples que pode ser renderizada em HTML, portanto, o link será clicável quando você visualizar o README no GitHub. Certifique-se de que o arquivo README.md esteja na raiz do seu repositório para que ele seja exibido automaticamente quando alguém acessar o repositório no GitHub.
