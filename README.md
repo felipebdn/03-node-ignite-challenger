@@ -8,9 +8,11 @@ A documentação Swagger fornece detalhes sobre os endpoints da API, os parâmet
 
 Certifique-se de consultar a documentação Swagger ou utilize o framework [Insomnia](https://insomnia.rest/products/insomnia) para explorar todas as funcionalidades oferecidas por nossa API.
 
+Para usar no Insomnia importe o arquivo de configuração que se encontra em [assets/Insomnia_2023-10-03.json]()
+
 ## Requisitos
 
-Para usar a API, você precisa de [mencionar quaisquer requisitos específicos, como tokens de acesso ou chaves de API].
+Para algumas rotas da API é necessário passar o JWT de autenticação, pode ser obtido na rota `/sessions` na documentação do Swagger ou na requisição `Authenticate Org` do Insomnia.
 
 ## Exemplos
 
