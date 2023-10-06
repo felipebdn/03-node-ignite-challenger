@@ -20,7 +20,7 @@ Para algumas rotas da API é necessário passar o JWT de autenticação, pode se
 
 ## Licença
 olha 
-Este projeto é licenciado sob a [Nome da Licença]. Consulte o arquivo [LICENSE.md](LICENSE.md) para obter detalhes.
+Este projeto é licenciado sob a [Nome da Licença]. Consulte o arquivo [LICENSE.md](LICENSE) para obter detalhes.
 
 ## Contato
 
