@@ -26,10 +26,10 @@ app.register(Swagger, {
     servers: [
       {
         url: 'http://localhost:3333',
-        description: 'API de teste',
+        description: 'API localhsot',
       },
       {
-        url: 'https://node-ignite-chellenger-03.onrender.com',
+        url: env.URL_SERVER,
         description: 'API de produção',
       },
     ],

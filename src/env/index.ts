@@ -10,6 +10,7 @@ const envSchema = z.object({
   AWS_SECRET_ACCESS_KEY: z.string(),
   AWS_BUCKET: z.string(),
   AWS_URL_IMAGE: z.string().url(),
+  URL_SERVER: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
