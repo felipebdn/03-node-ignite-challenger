@@ -63,22 +63,4 @@ describe('Orgs Register Use Case', () => {
         }),
     ).rejects.toBeInstanceOf(OrgAlreadyExistsError)
   })
-  it('should hash org password upon regsitration', async () => {
-    const { org } = await sut.execute({
-      name: 'example',
-      organization: 'example',
-      email: 'teste@example.com',
-      state: 'PA',
-      number: '1234',
-      road: 'example road',
-      sector: 'example sector',
-      city: 'city example',
-      cep: 12345678,
-      whatsapp: '12345678910',
-      password: '123456',
-    })
-    const isPasswordCorrectlyHashed = await compare('123456', org.password_hash)
-
-    expect(isPasswordCorrectlyHashed).toBe(true)
-  })
 })

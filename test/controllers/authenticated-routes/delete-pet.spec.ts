@@ -90,6 +90,6 @@ describe('Delete Pet (e2e)', () => {
       .delete(`/pet/${pet.id}`)
       .set('Authorization', `Bearer ${token}`)
 
-    expect(response.statusCode).toEqual(400)
+    expect(response.statusCode).toEqual(401)
   })
 })

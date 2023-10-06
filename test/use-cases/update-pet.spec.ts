@@ -34,6 +34,7 @@ describe('Update Pet Use Case', () => {
         requirements: 'example',
       },
       petId: createPet.id,
+      org_id: 'org_id',
     })
 
     expect(pet).toEqual(
