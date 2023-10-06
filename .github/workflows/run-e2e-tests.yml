@@ -31,6 +31,6 @@ jobs:
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
           AWS_BUCKET: test
-          AWS_URL_IMAGE: test
+          AWS_URL_IMAGE: https://findafriendapi.s3.us-east-1.amazonaws.com
           URL_SERVER: test
           DATABASE_URL: "postgresql://docker:docker@localhost:5432/findafriend?schema=public"
