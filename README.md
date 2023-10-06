@@ -8,7 +8,7 @@ A documentação Swagger fornece detalhes sobre os endpoints da API, os parâmet
 
 Certifique-se de consultar a documentação Swagger ou utilize o framework [Insomnia](https://insomnia.rest/products/insomnia) para explorar todas as funcionalidades oferecidas por nossa API.
 
-Para usar no Insomnia importe o arquivo de configuração que se encontra em [assets/Insomnia_2023-10-03.json](assets/Insomnia_2023-10-03.json)
+Para usar no Insomnia importe o arquivo de configuração que se encontra em [assets/Insomnia_2023-10-03.json](assets/Insomnia_2023-10-03.json), ao fazer isso você terá acesso a todos os Endpoints da API.
 
 ## Requisitos
 
